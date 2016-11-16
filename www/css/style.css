@@ -1,0 +1,12 @@
+/* Empty. Add your own CSS if you like */
+
+.item-body p {
+	margin-top: 0;
+}
+
+.item h2 {
+	overflow: hidden;
+	white-space: normal;
+
+
+}
