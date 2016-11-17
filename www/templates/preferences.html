@@ -1,17 +1,17 @@
 <ion-view view-title="Preferences">
-
-  <ion-content>
-<div class="list">
-        
-        <div class="item item-divider"> 
-			Show
-        </div>
-		
-	<ion-toggle ng-model="mcnair" toggle-class="toggle-calm">McNair</ion-toggle>
-	<ion-toggle ng-model="wadsworth" toggle-class="toggle-calm">Wadsworth</ion-toggle>
-	<ion-toggle ng-model="dhh" toggle-class="toggle-calm">DHH</ion-toggle>
-	
-	</div>
-	
-  </ion-content>
+	<ion-content>
+		<ion-list>
+			<div class="item item-divider">Notifications</div>
+			<ion-toggle toggle-class="toggle-energized" ng-change="toggleFavorites(notifications.favorites)" ng-model="notifications.favorites">Favorites</ion-toggle>
+			<ion-toggle toggle-class="toggle-energized" ng-change="toggleReminders(notifications.reminders)" ng-model="notifications.reminders">Meal Reminders</ion-toggle>
+			<label class="item item-input item-select">
+				<div class="input-label">When</div>
+				<select ng-selected="toggleWhen(notifications.when)" ng-model="notifications.when">
+					<option>15 Minutes</option>
+					<option>30 Minutes</option>
+					<option>1 Hour</option>
+				</select>
+			</label>
+		</ion-list>
+	</ion-content>
 </ion-view>

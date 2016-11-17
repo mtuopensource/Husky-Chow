@@ -1,24 +1,14 @@
 <ion-view view-title="Today's Menu">
-  <ion-content>
-	<div ng-repeat="meal in meals" class="list card">
-          <div class="item item-avatar">
-            <img src="img/husky.jpg">
-            <h2>{{meal.title}}</h2>
-            <p>{{meal.date}}</p>
-          </div>
-
-          <div class="item item-body">
-            <p>
-				{{meal.description}}
-            </p>
-          </div>
-        </div>
-	
-		
-		
-		
-		
-		
-	
-  </ion-content>
+	<ion-content>
+		<div ng-repeat="meal in meals" class="list card">
+			<div class="item item-avatar">
+				<img src="img/husky.jpg">
+				<h2>{{meal.title}}</h2>
+				<h4>{{meal.date}}</h4>
+			</div>
+			<div ng-if="meal.description" class="item item-body">
+				<p>{{meal.description}}</p>
+			</div>
+		</div>
+	</ion-content>
 </ion-view>

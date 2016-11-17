@@ -14,6 +14,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
 .config(function($ionicConfigProvider) {
 	$ionicConfigProvider.scrolling.jsScrolling(false);
+	$ionicConfigProvider.navBar.alignTitle('center');
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -23,19 +24,21 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 		abstract: true,
 		templateUrl: 'templates/menu.html',
 	})
+	.state('app.favorites', {
+		url: '/favorites',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/favorites.html',
+				controller: 'FavoritesCtrl'
+			}
+		}
+	})
 	.state('app.preferences', {
 		url: '/preferences',
 		views: {
 			'menuContent': {
-				templateUrl: 'templates/preferences.html'
-			}
-		}
-	})
-	.state('app.notifications', {
-		url: '/notifications',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/notifications.html'
+				templateUrl: 'templates/preferences.html',
+				controller: 'PreferencesCtrl'
 			}
 		}
     })
