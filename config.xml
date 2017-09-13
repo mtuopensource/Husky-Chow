@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.huskychow497142" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="club.mtuopensource.huskychow" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Husky Chow</name>
     <description>Shows today's menu for the dining halls.</description>
-    <author email="ajwgeek@gmail.com" href="http://www.ajwgeek.com/">Austin Walhof</author>
+    <author email="mtuopensource@gmail.com" href="http://mtuopensource.club/">MTU Open Source Club</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://141.219.243.197:8100" />
@@ -48,4 +48,5 @@
         <variable name="CHANNEL_NAME" value="Master" />
         <variable name="UPDATE_METHOD" value="auto" />
     </plugin>
+    <plugin name="cordova-plugin-googleplus" spec="^5.1.1" />
 </widget>

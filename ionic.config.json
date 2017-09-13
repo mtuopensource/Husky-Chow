@@ -2,6 +2,8 @@
   "name": "husky-chow",
   "app_id": "b1bae9c2",
   "type": "ionic1",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "watchPatterns": []
 }

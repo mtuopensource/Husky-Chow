@@ -1,64 +1,4 @@
-// Client ID and API key from the Developer Console
- var CLIENT_ID = '488845883724-fg4ikd4109ajr003muijshr1la6q17g3.apps.googleusercontent.com';
-
- // Array of API discovery doc URLs for APIs used by the quickstart
- var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-
- // Authorization scopes required by the API; multiple scopes can be
- // included, separated by spaces.
- var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
-
-
-
- /**
-  *  On load, called to load the auth2 library and API client library.
-  */
- function handleClientLoad() {
-   gapi.load('client:auth2', initClient);
- }
-
- /**
-  *  Initializes the API client library and sets up sign-in state
-  *  listeners.
-  */
-
-
- var signedIn = false;
-
-
- function initClient() {
-   gapi.client.init({
-     discoveryDocs: DISCOVERY_DOCS,
-     clientId: CLIENT_ID,
-     scope: SCOPES
-   }).then(function () {
-     // Listen for sign-in state changes.
-     gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-
-
-
-
-   });
- }
-
-var $myScope;
-
-function updateSigninStatus(value) {
-  if(value) {
-    var meals = listUpcomingEvents();
-    $myScope.meals = meals;
-    $myScope.$apply();
-  } else {
-    gapi.auth2.getAuthInstance().signIn();
-  }
-}
-
-
-
-
- /**
+/**
   * Print the summary and start datetime/date of the next ten events in
   * the authorized user's calendar. If no events are found an
   * appropriate message is printed.
@@ -124,7 +64,7 @@ angular.module('starter.controllers', [])
 .controller('TodayCtrl', function($scope) {
 	$scope.meals = []; // Initialize the meals array, so we can append data.
 
-  $myScope = $scope;
+
 })
 
 .controller('WeekCtrl', function($scope) {
@@ -132,8 +72,33 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PreferencesCtrl', function($scope) {
+.controller('PreferencesCtrl', function($scope, $ionicLoading) {
 	$scope.notifications = []; // Initialize the meals array, so we can fetch data.
+console.log(window.cordova.plugins);
+  $scope.googleSignIn = function() {
+     $ionicLoading.show({
+       template: 'Logging in...'
+     });
+    window.plugins.googleplus.login(
+       {'scopes': 'https://www.googleapis.com/auth/calendar.readonly', 'webClientId': '488845883724-fu88o5lofrmbco7dshqj0qteptmov666.apps.googleusercontent.com'},
+       function (user_data) {
+         // For the purpose of this example I will store user data on local storage
+         UserService.setUser({
+           userID: user_data.userId,
+           name: user_data.displayName,
+           email: user_data.email,
+           picture: user_data.imageUrl,
+           accessToken: user_data.accessToken,
+           idToken: user_data.idToken
+         });
+         $ionicLoading.hide();
+         $state.go('app.home');
+       },
+       function (msg) {
+         $ionicLoading.hide();
+       }
+     );
+   };
 
 	angular.element(document).ready(function () {
 		$scope.notifications.favorites = window.localStorage.getItem("notifications.favorites") === 'true';

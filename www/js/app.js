@@ -1,5 +1,6 @@
 angular.module('starter', ['ionic', 'starter.controllers'])
 
+
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
 		if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -68,6 +69,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 			}
 		}
     });
-	
+
 	$urlRouterProvider.otherwise('/app/browse'); // If none of the above states are matched, use this as the fallback.
 });

@@ -1,6 +1,8 @@
 <ion-view view-title="Preferences">
 	<ion-content>
-		<ion-list>
+
+	<a class="google-sign-in button button-block" ng-click="googleSignIn()">Sign in with Google</a>
+
 			<div class="item item-divider">Notifications</div>
 			<ion-toggle toggle-class="toggle-energized" ng-change="toggleFavorites(notifications.favorites)" ng-model="notifications.favorites">Favorites</ion-toggle>
 			<ion-toggle toggle-class="toggle-energized" ng-change="toggleReminders(notifications.reminders)" ng-model="notifications.reminders">Meal Reminders</ion-toggle>
