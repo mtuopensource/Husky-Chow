@@ -18,7 +18,7 @@ A simple app to shows today's menu in the Michigan Tech dining halls. Created in
 5.  Run `ionic serve`
 
 ## Deploying
-* PWA - Uncomment [this](https://github.com/ajwgeek/Husky-Chow/blob/master/www/index.html#L10), run `npm run ionic:build --prod` and then push the `www` folder to your favorite hosting service
+* PWA - Uncomment [this](https://github.com/mtuopensource/Husky-Chow/blob/master/www/index.html#L10), run `npm run ionic:build --prod` and then push the `www` folder to your favorite hosting service
 * Android - Run `ionic cordova run android --prod`
 * iOS - Run `ionic cordova run ios --prod`
 
