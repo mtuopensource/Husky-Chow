@@ -51,7 +51,7 @@ function updateSigninStatus(value) {
     $myScope.meals = meals;
     $myScope.$apply();
   } else {
-    gapi.auth2.getAuthInstance().signIn({ux_mode:'redirect'});
+    gapi.auth2.getAuthInstance().signIn();
   }
 }
 
