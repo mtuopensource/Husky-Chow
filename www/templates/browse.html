@@ -1,5 +1,18 @@
+
 <ion-view view-title="Today's Menu">
-	<ion-content>
+	<ion-content scroll='true' has-bouncing='true'>
+		<ion-refresher
+  pulling-text="Refresh"
+  on-refresh="doRefresh()">
+</ion-refresher>
+
+		<div ng-show="empty" class="card">
+  		<div class="item item-text-wrap">
+    		No meals found
+  		</div>
+		</div>
+
+
 		<div ng-repeat="meal in meals" class="list card">
 			<div class="item item-avatar">
 				<img src="img/husky.jpg">

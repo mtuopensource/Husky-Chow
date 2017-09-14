@@ -44,7 +44,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 				controller: 'TodayCtrl'
 			}
 		}
-    });
+});
+
+
+
+
+
 
 	$urlRouterProvider.otherwise('/app/browse'); // If none of the above states are matched, use this as the fallback.
 });

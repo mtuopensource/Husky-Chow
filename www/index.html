@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, height=device-height">
-    <title></title>
-
+    <title>Husky Chow</title>
     <link rel="manifest" href="manifest.json">
 
     <!-- un-comment this code to enable service worker
@@ -15,7 +14,6 @@
           .catch(err => console.log('Error', err));
       }
     </script>-->
-
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
@@ -42,39 +40,9 @@
   <body>
     <ion-nav-view></ion-nav-view>
 
-		<script id="new-favorite.html" type="text/ng-template">
 
-  <div class="modal">
 
-    <!-- Modal header bar -->
-    <ion-header-bar class="bar-energized">
-      <h1 class="title">Add Favorite</h1>
-	          <button class="button button-dark" ng-click="closeNewFavorite()">Cancel</button>
-    </ion-header-bar>
 
-    <!-- Modal content area -->
-    <ion-content>
 
-      <form ng-submit="createFavorite(favorite)">
-        <div class="list">
-          <label class="item item-input">
-            <input type="text" placeholder="Food Name" ng-model="favorite.title">
-          </label>
-        </div>
-        <div class="padding">
-          <button type="submit" class="button button-block button-dark">Create Favorite</button>
-        </div>
-      </form>
-
-    </ion-content>
-
-  </div>
-
-</script>
-
-<script async defer src="https://apis.google.com/js/api.js"
-   onload="this.onload=function(){};onGapiLoad()"
-   onreadystatechange="if (this.readyState === 'complete') this.onload()">
- </script>
   </body>
 </html>

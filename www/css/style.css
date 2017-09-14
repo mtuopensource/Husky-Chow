@@ -6,3 +6,17 @@
 	overflow: hidden;
 	white-space: normal;
 }
+
+.about {
+	padding: 20px;
+}
+
+.about .heading {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.about .logo {
+	display: block;
+  margin: 20px auto;
+}
