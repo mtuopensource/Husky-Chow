@@ -25,24 +25,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 		abstract: true,
 		templateUrl: 'templates/menu.html',
 	})
-	.state('app.favorites', {
-		url: '/favorites',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/favorites.html',
-				controller: 'FavoritesCtrl'
-			}
-		}
-	})
-	.state('app.preferences', {
-		url: '/preferences',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/preferences.html',
-				controller: 'PreferencesCtrl'
-			}
-		}
-    })
+
+
 	.state('app.about', {
 		url: '/about',
 		views: {
@@ -51,15 +35,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 			}
 		}
     })
-	.state('app.browseweek', {
-		url: '/browseweek',
-		views: {
-			'menuContent': {
-				templateUrl: 'templates/browseweek.html',
-				controller: 'WeekCtrl'
-			}
-		}
-    })
+
     .state('app.browse', {
 		url: '/browse',
 		views: {

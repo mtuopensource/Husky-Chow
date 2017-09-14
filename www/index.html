@@ -25,7 +25,6 @@
 
 	<script src="lib/jquery-2.0.0.min.js"></script>
 	<script src="lib/moment/moment-with-locales.min.js"></script>
-  <script src="https://code.ionicframework.com/services/ionic-pro.min.js" data-app-id="b1bae9c2" data-app-version="0.0.1"></script>
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -40,7 +39,7 @@
 
   </head>
 
-  <body ng-app="starter">
+  <body>
     <ion-nav-view></ion-nav-view>
 
 		<script id="new-favorite.html" type="text/ng-template">
@@ -73,5 +72,9 @@
 
 </script>
 
+<script async defer src="https://apis.google.com/js/api.js"
+   onload="this.onload=function(){};onGapiLoad()"
+   onreadystatechange="if (this.readyState === 'complete') this.onload()">
+ </script>
   </body>
 </html>
