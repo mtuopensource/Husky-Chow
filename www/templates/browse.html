@@ -16,11 +16,11 @@
 		<div ng-repeat="meal in meals" class="list card">
 			<div class="item item-avatar">
 				<img src="img/husky.jpg">
-				<h2>{{meal.title}}</h2>
+				<h2 class = "mealtitle">{{meal.title}}</h2>
 				<h4>{{meal.date}}</h4>
 			</div>
 			<div ng-if="meal.description" class="item item-body">
-				<p>{{meal.description}}</p>
+				<p class = "description">{{meal.description}}</p>
 			</div>
 		</div>
 	</ion-content>
