@@ -35,9 +35,9 @@
     "cordova": {
         "plugins": {
             "cordova-plugin-ionic": {
-                "APP_ID": "b1bae9c2",
+                "APP_ID": "c0072572",
                 "CHANNEL_NAME": "Master",
-                "UPDATE_METHOD": "auto"
+                "UPDATE_METHOD": "background"
             },
             "cordova-plugin-googleplus": {},
             "cordova-custom-config": {},

@@ -1,0 +1,56 @@
+<ion-view view-title="Suggestions">
+	<ion-content class="contact">
+		<h2 class="heading">Husky Chow</h2>
+		<p class="subheading">Have any suggestions or thoughts on how we can make Husky Chow better?</p>
+		<p class="subheading">Please contact us and let us know!</p>
+    <ion-list>
+    <br/>
+    <h3>Contact Info</h3>
+      <ion-item>
+       <ion-label floating>Name</ion-label>
+       <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+       <ion-label floating>Phone Number</ion-label>
+       <ion-input type="tel"></ion-input>
+      </ion-item>
+
+      <ion-item>
+       <ion-label floating>Email</ion-label>
+       <ion-input type="email"></ion-input>
+      </ion-item>
+
+    <h3>Ratings and Suggestions</h3>
+      <ion-label fixed>User Experience</ion-label>
+      <div class="range">
+        <i class="icon ion-sad-outline"></i>
+        <input type="range" name="UX" min="1" max="5" value="3" step="1">
+        <i class="icon ion-happy-outline"></i>
+      </div>
+
+      <ion-label fixed>Aesthetics</ion-label>
+      <div class="range">
+        <i class="icon ion-trash-a"></i>
+        <input type="range" name="UX" min="1" max="5" value="3" step="1">
+        <i class="icon ion-ios-rose"></i>
+      </div>
+
+      <ion-item>
+       <input placeholder="Device/Model" type="text"></input>
+      </ion-item>
+      <br/>
+      <ion-item>
+       <textarea placeholder="Was this app compatible with above device?"></textarea>
+      </ion-item>
+      <br/>
+      <ion-item>
+       <textarea placeholder="Other Comments/Suggestions"></textarea>
+      </ion-item>
+
+      <button class="button button-full button-energized">Submit</button>
+
+
+   </ion-list>
+		</ion-content>
+</ion-view>
