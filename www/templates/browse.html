@@ -16,7 +16,7 @@
 		<div ng-repeat="meal in meals" class="list card">
 			<div class="item item-avatar">
 				<h2 class = "mealtitle">{{meal.title}}</h2>
-				<h4 class = "time">{{meal.date}}</h4>
+				<p class = "time">{{meal.date}}</p>
 			</div>
 			<div ng-if="meal.description" class="item item-body">
 				<ul> <li class = "description" ng-repeat="bullet in meal.description">{{bullet}} </ul>
