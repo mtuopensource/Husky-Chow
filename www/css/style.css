@@ -2,6 +2,10 @@
 	margin-top: 0;
 }
 
+.item-avatar {
+	padding-left: 20px;
+}
+
 .item h2 {
 	overflow: hidden;
 	white-space: normal;
@@ -15,6 +19,17 @@
 	text-align: center;
 	margin-bottom: 20px;
 }
+
+.about .subheading {
+	font-size: 1.25rem !important;
+	line-height: 1.5rem !important;
+	
+}
+
+input[type="text"], input[type="tel"], input[type="email"] {
+	width: 100%;
+}
+
 
 .about .logo {
 	display: block;
