@@ -40,7 +40,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 		url: '/contact',
 				views: {
 			'menuContent': {
-				templateUrl: 'templates/contact.html'
+				templateUrl: 'templates/contact.html',
+				controller: 'SuggestionsController'
 			}
 		}
 	 })

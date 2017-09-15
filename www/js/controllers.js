@@ -1,6 +1,7 @@
 const GAPI_DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'];
 const GAPI_CALENDAR = 'mtu.edu_5fq1ohnvr8u8tu9p8rec395sg0@group.calendar.google.com';
 const GAPI_CLIENT_ID = 'AIzaSyCTUS5CwqjAAhll3PeAIgEtnsCrXZSFQj4';
+const GOOGLE_FORMS_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSd9_hNwU8HRew9RcsUCLBlQUsc7LUZ64x5LZ3iCW_QGuIqM2g/formResponse';
 
 /**
  * If we load the Google API using Script tags, we don't know when it is
@@ -110,4 +111,32 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
 
   $ionicLoading.show(); /* Display a spinner until the content is loaded. */
   $scope.loadGapi();
+}).controller('SuggestionsController', function($scope, $ionicLoading, $state) {
+  $scope.submitForm = function() {
+    var request = {
+      'usp': 'pp_url',
+      'entry.1710756200': 'Jane Doe', /* Name */
+      'entry.1036644864': '5555555555', /* Phone Number */
+      'entry.118019032': 'example1@example.org', /* Mail Address */
+      'entry.328842982': '3', /* User Experience */
+      'entry.1516275287': '5', /* Aesthetics */
+      'entry.2103220588': 'LG G5, Android 7.0', /* Device Model/Software */
+      'entry.1534649750': 'The app was very lcompatible', /* Compatibility */
+      'entry.2041983297': 'My other comment is' /* Other Suggestions */
+    };
+    $.ajax({
+            url: GOOGLE_FORMS_URL,
+            data: request,
+            type: "POST",
+            dataType: "xml",
+            statusCode: {
+                0: function () {
+                  /* There was an error, this is bad. */
+                },
+                200: function () {
+                  console.log('Form submitted, no errors');
+                }
+            }
+        });
+  }
 });
