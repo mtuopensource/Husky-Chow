@@ -1,6 +1,6 @@
-const GAPI_CLIENT_ID      = 'AIzaSyCTUS5CwqjAAhll3PeAIgEtnsCrXZSFQj4'; /* This is safe, since the key is restricted to our app. */
 const GAPI_DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'];
-const GAPI_CALENDAR       = 'mtu.edu_5fq1ohnvr8u8tu9p8rec395sg0@group.calendar.google.com';
+const GAPI_CALENDAR = 'mtu.edu_5fq1ohnvr8u8tu9p8rec395sg0@group.calendar.google.com';
+const GAPI_CLIENT_ID = 'AIzaSyCTUS5CwqjAAhll3PeAIgEtnsCrXZSFQj4';
 
 /**
  * If we load the Google API using Script tags, we don't know when it is
@@ -70,9 +70,17 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
       events.forEach(function(item, index, array) {
         var when = item.start.dateTime;
         when = moment(when).format('h:mm a'); /* Convert to a more user-friendly time and date format. */
+        var split = item.description.split(',');
+        var title = item.summary.toLowerCase();
+        if (title.includes("breakfast"))
+          title = "Breakfast";
+        if (title.includes("lunch"))
+          title = "Lunch";
+        if (title.includes("dinner") || title.includes("supper"))
+          title = "Dinner";
         var structure = {
-          'title': item.summary,
-          'description': item.description,
+          'title': title,
+          'description': split,
           'date': when
         };
         console.log('Title: ' + item.summary + ', description: ' + item.description + ', date: ' + when);

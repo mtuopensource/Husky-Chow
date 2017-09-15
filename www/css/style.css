@@ -11,15 +11,7 @@
 	padding: 20px;
 }
 
-.mealtitle {
-	font-size:3rem !important;
-}
-
-.description {
-	font-size:1.5rem !important;
-}
-
-.about .heading {
+.about .heading, .contact .heading {
 	text-align: center;
 	margin-bottom: 20px;
 }
@@ -27,4 +19,41 @@
 .about .logo {
 	display: block;
   margin: 20px auto;
+}
+
+.contact {
+	padding: 20px;
+}
+
+.contact .subheading {
+	text-align: center;
+	font-size: 1.25rem !important;
+	line-height: 1.5rem !important;
+}
+
+.mealtitle {
+	text-align: left;
+	font-size:2.5rem !important;
+}
+
+.description {
+	margin-left: 20px;
+	list-style:disc;
+	text-align: left;
+	font-size:1.25rem !important;
+	line-height:1.5rem !important;
+}
+
+.time {
+	text-align: left;
+	font-size:1.5rem !important;
+}
+
+.input-label{
+	width: 500px;
+}
+
+textarea {
+	width: 100%;
+	resize: none;
 }

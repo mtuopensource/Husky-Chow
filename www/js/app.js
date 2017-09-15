@@ -36,6 +36,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 		}
     })
 
+	.state('app.contact', {
+		url: '/contact',
+				views: {
+			'menuContent': {
+				templateUrl: 'templates/contact.html'
+			}
+		}
+	 })
+
     .state('app.browse', {
 		url: '/browse',
 		views: {

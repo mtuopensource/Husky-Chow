@@ -17,10 +17,10 @@
 			<div class="item item-avatar">
 				<img src="img/husky.jpg">
 				<h2 class = "mealtitle">{{meal.title}}</h2>
-				<h4>{{meal.date}}</h4>
+				<h4 class = "time">{{meal.date}}</h4>
 			</div>
 			<div ng-if="meal.description" class="item item-body">
-				<p class = "description">{{meal.description}}</p>
+				<ul> <li class = "description" ng-repeat="bullet in meal.description">{{bullet}} </ul>
 			</div>
 		</div>
 	</ion-content>
