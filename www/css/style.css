@@ -23,7 +23,7 @@
 .about .subheading {
 	font-size: 1.25rem !important;
 	line-height: 1.5rem !important;
-	
+
 }
 
 input[type="text"], input[type="tel"], input[type="email"] {
@@ -71,4 +71,12 @@ input[type="text"], input[type="tel"], input[type="email"] {
 textarea {
 	width: 100%;
 	resize: none;
+}
+
+.form-header {
+	margin: 30px 0;
+}
+
+.form-pad {
+	margin: 30px 0;
 }
