@@ -31,7 +31,7 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
     } else {
       console.log('Gapi not loaded');
       $scope.empty = true;
-      $scope.meals = [];
+      $scope.days = [];
       $scope.$apply();
     }
   }
@@ -45,7 +45,7 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
     var minTime = new Date();
     var maxTime = new Date();
     minTime.setHours(0 , 0, 0, 0); /* Last Midnight */
-    maxTime.setHours(24, 0, 0, 0); /* Next Midnight */
+    maxTime.setHours(48, 0, 0, 0); /* Next Midnight */
     var parameters = {
       'calendarId': GAPI_CALENDAR,
       'timeMin': minTime.toISOString(),
@@ -89,14 +89,20 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
           'date': when
         };
         console.log('Title: ' + item.summary + ', description: ' + item.description + ', date: ' + when);
-        temp.push(structure);
+        if (!temp[item.start]) {
+          temp[item.start] = {
+            meals: []
+          };
+        }
+        temp[item.start].meals.push(structure);
       });
+      console.log(temp);
       $scope.empty = false; /* Let the frontend know that the response contained data. */
-      $scope.meals = temp;
+      $scope.days = temp;
       $scope.$apply();
     } else {
       console.log('No response, clearing old items');
-      $scope.meals = [];
+      $scope.days = [];
       $scope.empty = true; /* Let the frontend know that the response was empty. */
       $scope.$apply();
     }
