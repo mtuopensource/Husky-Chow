@@ -16,6 +16,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($ionicConfigProvider) {
 	$ionicConfigProvider.scrolling.jsScrolling(false);
 	$ionicConfigProvider.navBar.alignTitle('center');
+	$ionicConfigProvider.tabs.position('bottom');
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
