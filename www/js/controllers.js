@@ -150,7 +150,27 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
 
   $ionicLoading.show(); /* Display a spinner until the content is loaded. */
   $scope.loadGapi();
-}).controller('SuggestionsController', function($scope, $ionicLoading, $state) {
+}).controller('SuggestionsController', function($scope, $ionicLoading, $ionicModal, $state, $ionicHistory) {
+  $ionicModal.fromTemplateUrl('thankyou-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $ionicHistory.nextViewOptions({
+      disableBack: true
+    });
+    $state.go("app.browse");
+    $scope.modal.hide();
+  };
+
+
   $scope.submitForm = function() {
     var name = $('#name').val();
     var phone_number = $('#phone_number').val();
@@ -160,32 +180,44 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
     var device = $('#device').val();
     var compatibility = $('#compatibility').val();
     var comments = $('#comments').val();
-
     var request = {
       'usp': 'pp_url',
       'entry.1710756200': name, /* Name */
       'entry.1036644864': phone_number, /* Phone Number */
       'entry.118019032': email, /* Mail Address */
-      'entry.328842982': user_experience, /* User Experience */
-      'entry.1516275287': aesthetics, /* Aesthetics */
+      'entry.328842982': Number(user_experience), /* User Experience */
+      'entry.1516275287': Number(aesthetics), /* Aesthetics */
       'entry.2103220588': device, /* Device Model/Software */
       'entry.1534649750': compatibility, /* Compatibility */
       'entry.2041983297': comments /* Other Suggestions */
     };
+
     $.ajax({
             url: GOOGLE_FORMS_URL,
             data: request,
-            type: "POST",
+            type: "GET",
             dataType: "xml",
             statusCode: {
                 0: function () {
-                  /* There was an error, this is bad. */
+
                 },
                 200: function () {
-                  alert("Thanks!");
                   console.log('Form submitted, no errors');
                 }
             }
         });
+
+        $scope.openModal();
+
+        $('#name').val('');
+        $('#phone_number').val('');
+        $('#email').val('');
+        $('#user_experience').val('');
+        $('#aesthetics').val('');
+        $('#device').val('');
+        $('#compatibility').val('');
+        $('#comments').val('');
+
+
   }
 });

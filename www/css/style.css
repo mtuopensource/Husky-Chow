@@ -11,7 +11,17 @@
 	white-space: normal;
 }
 
-.about {
+.feedback-text {
+		text-align:center;
+		font-size: 1.25rem;
+		line-height: 1.5rem;
+}
+
+.feedback-button {
+margin-top: 30px !important;
+}
+
+.about, .thanks-modal {
 	padding: 20px;
 }
 

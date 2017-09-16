@@ -40,6 +40,25 @@
   <body>
     <ion-nav-view></ion-nav-view>
 
+    <script id="thankyou-modal.html" type="text/ng-template">
+
+      <div class="modal">
+
+        <!-- Modal header bar -->
+        <ion-header-bar class="bar-energized">
+          <h1 class="title">Thank You</h1>
+        </ion-header-bar>
+
+        <!-- Modal content area -->
+        <ion-content class="thanks-modal">
+          <p class="feedback-text">We'll get back to you soon.</p>
+          <p class="feedback-text">Your comments and constructive feedback allow us to continually improve this app.</p>
+          <button ng-click="closeModal()" class="button button-full button-energized feedback-button">Finish</button>
+        </ion-content>
+
+      </div>
+
+    </script>
 
 
 
