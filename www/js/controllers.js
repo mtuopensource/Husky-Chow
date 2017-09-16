@@ -66,11 +66,19 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
    */
   $scope.onCalendarLoadData = function(response) {
     var events = response.result.items;
-    var temp = [];
+    var temp = {};
     if(events.length > 0) {
       events.forEach(function(item, index, array) {
         var when = item.start.dateTime;
+        var date = item.start.dateTime;
+        var friendlyDate = item.start.dateTime;
+
         when = moment(when).format('h:mm a'); /* Convert to a more user-friendly time and date format. */
+        date = moment(date).format('MMDDYY');
+        friendlyDate = moment(friendlyDate).format('MMMM DD, YYYY');
+
+        console.log(date);
+
         var split = item.description.split(',');
         var title = item.summary.toLowerCase();
         if (title.includes("breakfast"))
@@ -89,16 +97,18 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
           'date': when
         };
         console.log('Title: ' + item.summary + ', description: ' + item.description + ', date: ' + when);
-        if (!temp[item.start]) {
-          temp[item.start] = {
-            meals: []
+        if(!temp[date]) {
+          temp[date] = {
+            'friendlyDate': friendlyDate,
+            'meals': []
           };
         }
-        temp[item.start].meals.push(structure);
+        temp[date].meals.push(structure);
       });
-      console.log(temp);
+
       $scope.empty = false; /* Let the frontend know that the response contained data. */
       $scope.days = temp;
+      console.log($scope.days);
       $scope.$apply();
     } else {
       console.log('No response, clearing old items');

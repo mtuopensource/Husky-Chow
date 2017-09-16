@@ -13,16 +13,22 @@
 		</div>
 
 		<div ng-repeat="day in days">
-			<hr/>
+			<p class="daydate">{{ day.friendlyDate }}</p>
 			<div ng-repeat="meal in day.meals" class="list card">
 				<div class="item item-avatar">
-					<h2 class = "mealtitle">{{meal.title}}</h2>
-					<p class = "time">{{meal.date}}</p>
+					<h2 class="mealtitle">{{meal.title}}</h2>
+					<p class="time">{{meal.date}}</p>
 				</div>
 				<div ng-if="meal.description" class="item item-body">
-					<ul> <li class = "description" ng-repeat="bullet in meal.description">{{bullet}} </ul>
+					<ul>
+						<li class="description" ng-repeat="bullet in meal.description">{{bullet}}</li>
+					</ul>
 				</div>
 			</div>
-	</div>
+		</div>
+
+
+
+
 	</ion-content>
 </ion-view>
