@@ -11,6 +11,11 @@
 	white-space: normal;
 }
 
+.tabs-striped.tabs-energized .tab-item.tab-item-active, .tabs-striped.tabs-energized .tab-item.active, .tabs-striped.tabs-energized .tab-item.activated {
+	border-color: #7f8c8d;
+	color:#7f8c8d;
+}
+
 .feedback-text {
 		text-align:center;
 		font-size: 1.25rem;
