@@ -152,16 +152,25 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
   $scope.loadGapi();
 }).controller('SuggestionsController', function($scope, $ionicLoading, $state) {
   $scope.submitForm = function() {
+    var name = $('#name').val();
+    var phone_number = $('#phone_number').val();
+    var email = $('#email').val();
+    var user_experience = $('#user_experience').val();
+    var aesthetics = $('#aesthetics').val();
+    var device = $('#device').val();
+    var compatibility = $('#compatibility').val();
+    var comments = $('#comments').val();
+
     var request = {
       'usp': 'pp_url',
-      'entry.1710756200': 'Jane Doe', /* Name */
-      'entry.1036644864': '5555555555', /* Phone Number */
-      'entry.118019032': 'example1@example.org', /* Mail Address */
-      'entry.328842982': '3', /* User Experience */
-      'entry.1516275287': '5', /* Aesthetics */
-      'entry.2103220588': 'LG G5, Android 7.0', /* Device Model/Software */
-      'entry.1534649750': 'The app was very lcompatible', /* Compatibility */
-      'entry.2041983297': 'My other comment is' /* Other Suggestions */
+      'entry.1710756200': name, /* Name */
+      'entry.1036644864': phone_number, /* Phone Number */
+      'entry.118019032': email, /* Mail Address */
+      'entry.328842982': user_experience, /* User Experience */
+      'entry.1516275287': aesthetics, /* Aesthetics */
+      'entry.2103220588': device, /* Device Model/Software */
+      'entry.1534649750': compatibility, /* Compatibility */
+      'entry.2041983297': comments /* Other Suggestions */
     };
     $.ajax({
             url: GOOGLE_FORMS_URL,
