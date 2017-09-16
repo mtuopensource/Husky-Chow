@@ -75,7 +75,7 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
 
         when = moment(when).format('h:mm a'); /* Convert to a more user-friendly time and date format. */
         date = moment(date).format('MMDDYY');
-        friendlyDate = moment(friendlyDate).format('MMMM DD, YYYY');
+        friendlyDate = moment(friendlyDate).format('dddd, MMMM DD');
 
         console.log(date);
 

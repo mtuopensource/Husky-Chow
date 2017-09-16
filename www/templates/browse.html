@@ -1,10 +1,14 @@
 
 <ion-view view-title="Today's Menu">
+
+
 	<ion-content scroll='true' has-bouncing='true'>
+
 		<ion-refresher
   pulling-text="Refresh"
   on-refresh="doRefresh()">
 </ion-refresher>
+
 
 		<div ng-show="empty" class="card">
   		<div class="item item-text-wrap">
@@ -12,7 +16,7 @@
   		</div>
 		</div>
 
-		<div ng-repeat="day in days">
+		<div  ng-repeat="day in days">
 			<p class="daydate">{{ day.friendlyDate }}</p>
 			<div ng-repeat="meal in day.meals" class="list card">
 				<div class="item item-avatar">
@@ -26,9 +30,23 @@
 				</div>
 			</div>
 		</div>
-
-
-
-
+		<br />
 	</ion-content>
+
+	<ion-tabs class="tabs-energized tabs-icon-top">
+
+	<ion-tab title="Today" icon-on="ion-ios-information" icon-off="ion-ios-information-outline">
+		<!-- Tab 1 content -->
+	</ion-tab>
+
+	<ion-tab title="Week" icon-on="ion-ios-more	" icon-off="ion-ios-more-outline">
+		<!-- Tab 2 content -->
+	</ion-tab>
+
+	<ion-tab title="Month" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
+		<!-- Tab 3 content -->
+	</ion-tab>
+
+</ion-tabs>
+
 </ion-view>

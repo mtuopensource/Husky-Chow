@@ -26,6 +26,17 @@
 
 }
 
+
+.daydate {
+	margin-bottom: 30px;
+	font-size: 1.25rem;
+	text-align: center;
+}
+
+.daydate:first-child {
+	margin-top: 30px;
+}
+
 input[type="text"], input[type="tel"], input[type="email"] {
 	width: 100%;
 }
