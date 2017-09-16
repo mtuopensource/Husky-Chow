@@ -79,6 +79,10 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
           title = "Lunch";
         if (title.includes("dinner") || title.includes("supper"))
           title = "Dinner";
+        if(title.includes("brunch")) {
+          title = "Brunch";
+        }
+
         var structure = {
           'title': title,
           'description': split,
