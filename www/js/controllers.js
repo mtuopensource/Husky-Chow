@@ -144,6 +144,7 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
                   /* There was an error, this is bad. */
                 },
                 200: function () {
+                  alert("Thanks!");
                   console.log('Form submitted, no errors');
                 }
             }
