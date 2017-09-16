@@ -15,7 +15,7 @@ $.getScript('https://apis.google.com/js/api.js', function() {
   });
 });
 
-angular.module('starter.controllers', []).controller('TodayCtrl', function($scope, $ionicLoading, $state) {
+angular.module('starter.controllers', []).controller('TodayCtrl', function($scope, $ionicLoading, $state, $ionicTabsDelegate) {
 
   /**
    * LoadGapi
@@ -26,7 +26,18 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
       var options = { 'apiKey': GAPI_CLIENT_ID, 'discoveryDocs': GAPI_DISCOVERY_DOCS };
       gapi.client.init(options).then(function() {
         console.log('Authenticated, no errors');
-        gapi.client.load('calendar', 'v3', $scope.onCalendarLoad());
+        gapi.client.load('calendar', 'v3', function() {
+          var index = $ionicTabsDelegate.selectedIndex();
+          var days = 0;
+          if(index == 0) {
+            days = 1;
+          } else if(index == 1) {
+            days = 7;
+          } else if(index == 2) {
+            days = 31;
+          }
+          $scope.onCalendarLoad(days);
+        });
       });
     } else {
       console.log('Gapi not loaded');
@@ -40,12 +51,12 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
    * OnCalendarLoad
    * Called when the Calendar API has been loaded. Requests the events list for the calendar id provided.
    */
-  $scope.onCalendarLoad = function() {
+  $scope.onCalendarLoad = function(days) {
     console.log('Requesting events list for ' + GAPI_CALENDAR);
     var minTime = new Date();
     var maxTime = new Date();
     minTime.setHours(0 , 0, 0, 0); /* Last Midnight */
-    maxTime.setHours(48, 0, 0, 0); /* Next Midnight */
+    maxTime.setHours(24 * days, 0, 0, 0); /* Next Midnight */
     var parameters = {
       'calendarId': GAPI_CALENDAR,
       'timeMin': minTime.toISOString(),
@@ -74,21 +85,30 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
         var friendlyDate = item.start.dateTime;
 
         when = moment(when).format('h:mm a'); /* Convert to a more user-friendly time and date format. */
-        date = moment(date).format('MMDDYY');
+        date = moment(date).format('YYMMDD');
         friendlyDate = moment(friendlyDate).format('dddd, MMMM DD');
 
-        console.log(date);
+
+        if(!item.description) {
+          console.log('Skipping ' + item.summary);
+          return true;
+        }
 
         var split = item.description.split(',');
+
         var title = item.summary.toLowerCase();
-        if (title.includes("breakfast"))
+        if (title.includes("breakfast")) {
           title = "Breakfast";
-        if (title.includes("lunch"))
+        }else if (title.includes("lunch")) {
           title = "Lunch";
-        if (title.includes("dinner") || title.includes("supper"))
+        }else if (title.includes("dinner") || title.includes("supper")) {
           title = "Dinner";
-        if(title.includes("brunch")) {
+        }
+        else if(title.includes("brunch")) {
           title = "Brunch";
+        } else {
+          console.log('Skipping ' + item.summary);
+          return true;
         }
 
         var structure = {
@@ -96,7 +116,7 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
           'description': split,
           'date': when
         };
-        console.log('Title: ' + item.summary + ', description: ' + item.description + ', date: ' + when);
+
         if(!temp[date]) {
           temp[date] = {
             'friendlyDate': friendlyDate,
@@ -108,7 +128,6 @@ angular.module('starter.controllers', []).controller('TodayCtrl', function($scop
 
       $scope.empty = false; /* Let the frontend know that the response contained data. */
       $scope.days = temp;
-      console.log($scope.days);
       $scope.$apply();
     } else {
       console.log('No response, clearing old items');

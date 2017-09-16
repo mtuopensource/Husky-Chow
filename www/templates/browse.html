@@ -35,15 +35,15 @@
 
 	<ion-tabs class="tabs-energized tabs-icon-top">
 
-	<ion-tab title="Today" icon-on="ion-ios-information" icon-off="ion-ios-information-outline">
+	<ion-tab title="Today" on-select="doRefresh()" icon-on="ion-ios-information" icon-off="ion-ios-information-outline">
 		<!-- Tab 1 content -->
 	</ion-tab>
 
-	<ion-tab title="Week" icon-on="ion-ios-more	" icon-off="ion-ios-more-outline">
+	<ion-tab title="Week" on-select="doRefresh()" icon-on="ion-ios-more	" icon-off="ion-ios-more-outline">
 		<!-- Tab 2 content -->
 	</ion-tab>
 
-	<ion-tab title="Month" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
+	<ion-tab title="Month" on-select="doRefresh()" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
 		<!-- Tab 3 content -->
 	</ion-tab>
 
