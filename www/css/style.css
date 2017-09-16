@@ -23,7 +23,7 @@
 .about .subheading {
 	font-size: 1.25rem !important;
 	line-height: 1.5rem !important;
-
+ text-align: center;
 }
 
 input[type="text"], input[type="tel"], input[type="email"] {

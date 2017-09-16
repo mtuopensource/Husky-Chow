@@ -1,5 +1,5 @@
 
-<ion-view view-title="Today's Menu">
+<ion-view view-title="Menu">
 	<ion-content scroll='true' has-bouncing='true'>
 		<ion-refresher
   pulling-text="Refresh"
@@ -19,10 +19,10 @@
 					<h2 class = "mealtitle">{{meal.title}}</h2>
 					<p class = "time">{{meal.date}}</p>
 				</div>
-				<div ng-if="meal.description" class="item item-body">
-					<ul> <li class = "description" ng-repeat="bullet in meal.description">{{bullet}} </ul>
+				<div ng-if="meal.description" c`lass="item item-body">
+					<ul> <li class = "description"` ng-repeat="bullet in meal.description">{{bullet}} </ul>
 				</div>
 			</div>
-	</div>
+		</div>
 	</ion-content>
 </ion-view>
