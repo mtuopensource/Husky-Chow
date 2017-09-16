@@ -7,43 +7,43 @@
     <br/>
     <h3 class="form-header">Contact Info</h3>
       <ion-item>
-       <input placeholder="Name" type="text"></input>
+       <input id="name" placeholder="Name" type="text"></input>
       </ion-item>
 
       <ion-item>
-       <input placeholder="Phone Number" type="tel"></input>
+       <input id="phone_number" placeholder="Phone Number" type="tel"></input>
       </ion-item>
 
       <ion-item>
-       <input placeholder="Email" type="email"></input>
+       <input id= "email" placeholder="Email" type="email"></input>
       </ion-item>
 
     <h3 class="form-header">Ratings and Suggestions</h3>
       <ion-label fixed>User Experience</ion-label>
       <div class="range">
         <i class="icon ion-sad-outline"></i>
-        <input type="range" name="UX" min="1" max="5" value="3" step="1">
+        <input id="user_experience" type="range" name="UX" min="1" max="5" value="3" step="1">
         <i class="icon ion-happy-outline"></i>
       </div>
 
       <ion-label fixed>Aesthetics</ion-label>
       <div class="range">
         <i class="icon ion-trash-a"></i>
-        <input type="range" name="UX" min="1" max="5" value="3" step="1">
+        <input id="aesthetics" type="range" name="UX" min="1" max="5" value="3" step="1">
         <i class="icon ion-ios-rose"></i>
       </div>
 
       <ion-item>
-       <input placeholder="Device/Model" type="text"></input>
+       <input id="device" placeholder="Device/Model" type="text"></input>
       </ion-item>
       <br/>
 			<ion-item>
-			 <input placeholder="Was this app compatible with above device?" type="text"></input>
+			 <input id="compatibility" placeholder="Was this app compatible with above device?" type="text"></input>
 			</ion-item>
 
       <br/>
       <ion-item>
-       <input placeholder="Other Comments/Suggestions" type="text"></input>
+       <input id="comments" placeholder="Other Comments/Suggestions" type="text"></input>
       </ion-item>
 
       <button ng-click="submitForm()" class="button button-full button-energized">Submit</button>
