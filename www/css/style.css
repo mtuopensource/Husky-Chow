@@ -16,6 +16,10 @@
 	color:#7f8c8d;
 }
 
+.tabs-striped.tabs-energized .tab-item {
+	color:#ffffff;
+}
+
 .feedback-text {
 		text-align:center;
 		font-size: 1.25rem;
