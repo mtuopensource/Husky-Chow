@@ -3,7 +3,7 @@
     <name>Husky Chow</name>
     <description>Shows today's menu for the dining halls.</description>
     <author email="mtuopensource@gmail.com" href="http://mtuopensource.club/">MTU Open Source Club</author>
-    <content original-src="index.html" src="http://141.219.197.116:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://141.219.243.197:8100" />
     <allow-navigation href="*://*.googleapis.com/*" />
