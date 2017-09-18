@@ -35,6 +35,17 @@ export class DailyPage {
   }
 
   /**
+  * Clear
+  * Clears any data that was previously fetched by the Google Api. 
+  * @param {boolean} none is true when no data will be loaded.
+  */
+  clear = (none: boolean): void => {
+    this.none = none;
+    this.days = [];
+    this.keys = [];
+  }
+
+  /**
   * LoadGapi
   * Asynchronously loads the Google API client library. On success, we then
   * attempt to autenticate using the key and discovery documents set in
@@ -46,9 +57,7 @@ export class DailyPage {
     } else {
       console.error('Gapi not loaded');
       this.zone.run(() => {
-        this.none = true;
-        this.days = [];
-        this.keys = [];
+        this.clear(true);
       });
     }
   }
@@ -66,9 +75,7 @@ export class DailyPage {
     } else {
       console.error('Gapi client library not loaded');
       this.zone.run(() => {
-        this.none = true;
-        this.days = [];
-        this.keys = [];
+        this.clear(true);
       });
     }
   }
@@ -105,6 +112,7 @@ export class DailyPage {
   parseEventsList = (response): void => {
     var events = response.result.items;
     if (events.length > 0) {
+      this.clear(false);
       for (let event of events) {
         var time = moment(event.start.dateTime).format('h:mm a');
         var date = moment(event.start.dateTime).format('dddd, MMMM DD');
@@ -134,7 +142,6 @@ export class DailyPage {
           this.zone.run(() => {
             key.meals.push(structure);
             this.keys = Object.keys(this.days);
-            this.none = false;
           });
           if (this.refresher) {
             this.refresher.complete();
@@ -147,9 +154,7 @@ export class DailyPage {
     } else {
       console.log('No response, clearing old items');
       this.zone.run(() => {
-        this.none = true;
-        this.days = [];
-        this.keys = [];
+        this.clear(true);
       });
     }
   }
