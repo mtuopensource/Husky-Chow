@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="husky">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding id="page5">
+
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="none" class="card">
+    <div class="item item-text-wrap">
+      No meals found
+    </div>
+  </div>
+
+  <div class="day" *ngFor="let day of days; let isFirst = first">
+    <p class="daySeparator" [class.first]="isFirst">{{day.date}}</p>
+    <ion-card *ngFor="let meal of day.meals">
+      <ion-card-header>
+        <h1 class="mealName">{{meal.title}}</h1>
+        <h2 class="mealTime">{{meal.time}}</h2>
+      </ion-card-header>
+      <hr class="mealDivider" />
+      <ion-card-content>
+        <ul class="foodstuff">
+          <li *ngFor="let food of meal.items">{{ food }}</li>
+        </ul>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+</ion-content>

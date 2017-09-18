@@ -1,0 +1,8 @@
+{
+  "name": "husky-chow",
+  "app_id": "ef22c961",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

@@ -1,0 +1,37 @@
+page-daily {
+  .daySeparator {
+    font-size: 2rem;
+    text-align: center;
+  }
+  .daySeparator.first {
+    margin-top: 0;
+  }
+  .foodstuff {
+    margin: 0;
+    padding: 0 16px;
+  }
+
+  .foodstuff li {
+    font-size: 1.5rem;
+  }
+
+  .card-header-md, .card-content-ios {
+    padding: 16px 16px 8px 16px!important;
+  }
+  .card-content-md, .card-content-ios {
+    padding: 8px 16px !important;
+  }
+
+  .mealDivider {
+    margin: 0;
+    padding: 0;
+  }
+
+  .mealName {
+    font-size: 3.5rem  ;
+  }
+
+  .mealTime {
+    font-size: 2rem;
+  }
+}
