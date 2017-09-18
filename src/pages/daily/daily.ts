@@ -10,6 +10,14 @@ declare var gapi: any;
 })
 
 export class DailyPage {
+  readonly types: any = {
+    'breakfast' : 'Breakfast',
+    'brunch': 'Brunch',
+    'lunch': 'Lunch',
+    'dinner': 'Dinner',
+    'supper': 'Supper'
+  };
+
   public refresher: any;
   public days: any = [];
   public keys: any = [];
@@ -36,7 +44,7 @@ export class DailyPage {
 
   /**
   * Clear
-  * Clears any data that was previously fetched by the Google Api. 
+  * Clears any data that was previously fetched by the Google Api.
   * @param {boolean} none is true when no data will be loaded.
   */
   clear = (none: boolean): void => {
@@ -99,7 +107,13 @@ export class DailyPage {
     var maxTime = new Date();
     minTime.setHours(0, 0, 0, 0); /* Last Midnight */
     maxTime.setHours(24 * this.ahead(), 0, 0, 0); /* Add 24 hours for each day */
-    var parameters = { 'calendarId': Environment.GAPI_CALENDAR_ID, 'timeMin': minTime.toISOString(), 'timeMax': maxTime.toISOString(), 'singleEvents': true, 'orderBy': 'startTime' };
+    var parameters = {
+      'calendarId': Environment.GAPI_CALENDAR_ID,
+      'timeMin': minTime.toISOString(),
+      'timeMax': maxTime.toISOString(),
+      'singleEvents': true,
+      'orderBy': 'startTime'
+    };
     gapi.client.calendar.events.list(parameters).then(this.parseEventsList);
   }
 
@@ -119,20 +133,14 @@ export class DailyPage {
         if (event.description) {
           var items = event.description.split(',');
           var title = event.summary.toLowerCase();
-          if (title.includes('breakfast')) {
-            title = "Breakfast";
-          } else if (title.includes("brunch")) {
-            title = "Brunch";
-          } else if (title.includes("dinner")) {
-            title = "Dinner";
-          } else if (title.includes('supper')) {
-            title = "Dinner";
-          } else if (title.includes('lunch')) {
-            title = "Lunch";
+
+          if(title in this.types) {
+            title = this.types[title];
           } else {
-            console.log(event.summary + ' is not a meal, skipping.');
+            console.log(event.summary + ' has unknown meal type, skipping.');
             continue;
           }
+
           var key = this.days.find(x => x.date == date);
           if(!key) {
             key = { 'date': date, 'meals': [] }
