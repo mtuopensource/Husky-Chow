@@ -11,11 +11,11 @@ declare var gapi: any;
 
 export class DailyPage {
   readonly types: any = {
-    'breakfast' : 'Breakfast',
-    'brunch': 'Brunch',
-    'lunch': 'Lunch',
-    'dinner': 'Dinner',
-    'supper': 'Supper'
+    'breakfast': 'Breakfast',
+    'brunch'   : 'Brunch',
+    'lunch'    : 'Lunch',
+    'dinner'   : 'Dinner',
+    'supper'   : 'Dinner'
   };
 
   public refresher: any;
