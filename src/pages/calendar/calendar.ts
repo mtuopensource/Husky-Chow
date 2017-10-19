@@ -1,3 +1,9 @@
+/**
+  * This Calendar code was originally created by laker007.
+  * It can be found at https://github.com/laker007/ionic3-calendar
+  */
+
+
 import { Component, EventEmitter } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as moment from 'moment';
