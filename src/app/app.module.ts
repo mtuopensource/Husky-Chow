@@ -4,8 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { DailyPage } from '../pages/daily/daily';
-import { WeeklyPage } from '../pages/weekly/weekly';
-import { MonthlyPage } from '../pages/monthly/monthly';
+import { TomorrowPage } from '../pages/tomorrow/tomorrow';
 import { SuggestionsPage } from '../pages/suggestions/suggestions';
 import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -16,8 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     AboutPage,
     DailyPage,
-    WeeklyPage,
-    MonthlyPage,
+    TomorrowPage,
     SuggestionsPage,
     TabsPage
   ],
@@ -39,8 +37,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     DailyPage,
     SuggestionsPage,
     TabsPage,
-    WeeklyPage,
-    MonthlyPage
+    TomorrowPage,
   ],
   providers: [
     StatusBar,

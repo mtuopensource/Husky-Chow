@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 
 import { DailyPage } from '../daily/daily';
-import { WeeklyPage } from '../weekly/weekly';
-import { MonthlyPage } from '../monthly/monthly';
+import { TomorrowPage } from '../tomorrow/tomorrow';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -10,8 +9,7 @@ import { MonthlyPage } from '../monthly/monthly';
 export class TabsPage {
 
   tab1Root = DailyPage;
-  tab2Root = WeeklyPage;
-  tab3Root = MonthlyPage;
+  tab2Root = TomorrowPage;
 
   constructor() {
 

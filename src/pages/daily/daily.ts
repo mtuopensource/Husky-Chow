@@ -39,7 +39,7 @@ export class DailyPage {
   * @return the number of days to look ahead.
   */
   ahead = (): number => {
-    return 1;
+    return 0;
   }
 
   /**
@@ -105,8 +105,8 @@ export class DailyPage {
   requestEventsList = (): void => {
     var minTime = new Date();
     var maxTime = new Date();
-    minTime.setHours(0, 0, 0, 0); /* Last Midnight */
-    maxTime.setHours(24 * this.ahead(), 0, 0, 0); /* Add 24 hours for each day */
+    minTime.setHours(24 * this.ahead(), 0, 0, 0); /* Last Midnight */
+    maxTime.setHours(24 * this.ahead() + 24, 0, 0, 0); /* Add 24 hours for each day */
     var parameters = {
       'calendarId': Environment.GAPI_CALENDAR_ID,
       'timeMin': minTime.toISOString(),

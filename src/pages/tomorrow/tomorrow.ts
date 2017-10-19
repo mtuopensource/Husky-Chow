@@ -7,13 +7,13 @@ import { DailyPage } from '../daily/daily';
   templateUrl: '../daily/daily.html'
 })
 
-export class MonthlyPage extends DailyPage {
+export class TomorrowPage extends DailyPage {
   constructor(public navCtrl: NavController, public zone: NgZone) {
     super(navCtrl, zone);
-    this.name = "This Month's Menu";
+    this.name = "Tomorrow's Menu";
   }
 
   ahead = (): number => {
-    return 31;
+    return 1;
   }
 }
