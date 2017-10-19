@@ -21,7 +21,6 @@
   </div>
 
   <div class="day" *ngFor="let day of days; let isFirst = first">
-    <p class="daySeparator" [class.first]="isFirst">{{day.date}}</p>
     <ion-card *ngFor="let meal of day.meals">
       <ion-card-header>
         <h1 class="mealName">{{meal.title}}</h1>
