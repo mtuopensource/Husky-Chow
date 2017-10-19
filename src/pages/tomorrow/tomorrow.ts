@@ -1,6 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DailyPage } from '../daily/daily';
+import { NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-daily',
@@ -8,8 +9,8 @@ import { DailyPage } from '../daily/daily';
 })
 
 export class TomorrowPage extends DailyPage {
-  constructor(public navCtrl: NavController, public zone: NgZone) {
-    super(navCtrl, zone);
+  constructor(public navCtrl: NavController, public zone: NgZone, public navParams: NavParams) {
+    super(navCtrl, zone, navParams);
     this.name = "Tomorrow's Menu";
   }
 

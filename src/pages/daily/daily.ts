@@ -1,6 +1,9 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Environment } from '../../config/environment';
+import { NavParams } from 'ionic-angular';
+
+
 import * as moment from "moment";
 declare var gapi: any;
 
@@ -23,14 +26,16 @@ export class DailyPage {
   public keys: any = [];
   public none: any;
   public name: any;
+  public otherAhead: number;
 
   /**
   * DailyPage
   * @param {NavController} publicnavCtrl
   * @param {NgZone}        publiczone
   */
-  constructor(public navCtrl: NavController, public zone: NgZone) {
+  constructor(public navCtrl: NavController, public zone: NgZone, public navParams: NavParams) {
     this.name = "Today's Menu";
+    this.otherAhead = navParams.get('ahead');
     this.loadGapi();
   }
 
@@ -105,8 +110,14 @@ export class DailyPage {
   requestEventsList = (): void => {
     var minTime = new Date();
     var maxTime = new Date();
-    minTime.setHours(24 * this.ahead(), 0, 0, 0); /* Last Midnight */
-    maxTime.setHours(24 * this.ahead() + 24, 0, 0, 0); /* Add 24 hours for each day */
+    if(this.otherAhead) {
+      minTime.setHours(24 * this.otherAhead, 0, 0, 0); /* Last Midnight */
+      maxTime.setHours(24 * this.otherAhead + 24, 0, 0, 0); /* Add 24 hours for each day */
+    } else {
+      minTime.setHours(24 * this.ahead(), 0, 0, 0); /* Last Midnight */
+      maxTime.setHours(24 * this.ahead() + 24, 0, 0, 0); /* Add 24 hours for each day */
+    }
+
     var parameters = {
       'calendarId': Environment.GAPI_CALENDAR_ID,
       'timeMin': minTime.toISOString(),

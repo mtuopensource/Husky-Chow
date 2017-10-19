@@ -2,6 +2,7 @@ import { Component, EventEmitter } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as moment from 'moment';
 import * as _ from "lodash";
+import { DailyPage } from '../daily/daily';
 
 @Component({
   selector: 'page-calendar',
@@ -33,7 +34,15 @@ export class CalendarPage {
     this.today();
   }
   daySelect = (selected): void => {
-
+    var a = moment();
+    var b = moment([selected.year, selected.month, selected.date]);
+    var d = b.diff(a, 'days');
+    if(d >= 0) {
+      d += 1;
+    }
+    this.navCtrl.push(DailyPage, {
+      'ahead': d
+    });
   }
 
   today = (): void => {
@@ -41,7 +50,7 @@ export class CalendarPage {
     this.displayMonth = this.currentMonth;
     this.displayMonth = moment().month(this.displayMonth).format('MMMM');
     this.createMonth(this.currentYear, this.currentMonth);
-    // 将今天标记为选择状态
+
     var todayIndex = _.findIndex(this.dateArray, {
         year: this.currentYear,
         month: this.currentMonth,
@@ -50,15 +59,15 @@ export class CalendarPage {
     });
     this.lastSelect = todayIndex;
     this.dateArray[todayIndex].isSelect = true;
-    //this.onDaySelect.emit(this.dateArray[todayIndex]);
+
   }
 
   createMonth = (year, month): void => {
-    this.dateArray = []; // 清除上个月的数据
-    this.weekArray = []; // 清除数据
-    var firstDay; //当前选择月份的 1 号星期几,决定了上个月取出几天出来。星期日不用显示上个月，星期一显示上个月一天，星期二显示上个月两天
-    var preMonthDays; // 上个月的天数
-    var monthDays; // 当月的天数
+    this.dateArray = [];
+    this.weekArray = [];
+    var firstDay;
+    var preMonthDays;
+    var monthDays;
     var weekDays = [];
     firstDay = moment({ year: year, month: month, date: 1 }).day();
     // 上个月天数
@@ -68,11 +77,11 @@ export class CalendarPage {
     else {
         preMonthDays = moment({ year: year, month: month - 1 }).daysInMonth();
     }
-    // 本月天数
+
     monthDays = moment({ year: year, month: month }).daysInMonth();
-    // 将上个月的最后几天添加入数组
+
     if (firstDay !== 7) {
-        var lastMonthStart = preMonthDays - firstDay + 1; // 从上个月几号开始
+        var lastMonthStart = preMonthDays - firstDay + 1;
         for (var i = 0; i < firstDay; i++) {
             if (month === 0) {
                 this.dateArray.push({
@@ -96,7 +105,7 @@ export class CalendarPage {
             }
         }
     }
-    // 将本月天数添加到数组中
+
     for (var i = 0; i < monthDays; i++) {
         this.dateArray.push({
             year: year,
@@ -116,7 +125,7 @@ export class CalendarPage {
         });
         this.dateArray[todayIndex].isToday = true;
     }
-    // 将下个月天数添加到数组中，有些月份显示 6 周，有些月份显示 5 周
+
     if (this.dateArray.length % 7 !== 0) {
         var nextMonthAdd = 7 - this.dateArray.length % 7;
         for (var i = 0; i < nextMonthAdd; i++) {
