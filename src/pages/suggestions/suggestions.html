@@ -8,12 +8,14 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding id="page6">
   <div id="suggestions-markdown3" style="text-align:center;" class="show-list-numbers-and-dots">
     <p style="color:#000000;">
       Have an idea to make Husky Chow better? Please let us know! We appreciate your constructive feedback.
     </p>
   </div>
+
   <h3 id="suggestions-heading3" style="color:#000000;">
     Contact Information
   </h3>
@@ -37,25 +39,40 @@
       <ion-input type="email" placeholder="example@example.org"></ion-input>
     </ion-item>
   </form>
+
   <h3 id="suggestions-heading4" style="color:#000000;">
     Ratings
   </h3>
   <form id="suggestions-form4">
     <ion-item id="suggestions-range2">
+      <ion-label class = "sliderLabel" stacked>
+        Ease of Use
+      </ion-label>
       <ion-range min="1" max="5" step="1" color="energized" value="3">
         <ion-label range-left>
-          Ease of Use
+          <ion-icon name="sad"></ion-icon>
+        </ion-label>
+        <ion-label range-right>
+          <ion-icon name="happy"></ion-icon>
         </ion-label>
       </ion-range>
     </ion-item>
     <ion-item id="suggestions-range3">
+      <ion-label class = "sliderLabel" stacked>
+        Aesthetics
+      </ion-label>
       <ion-range min="1" max="5" step="1" color="energized" value="3">
         <ion-label range-left>
-          Aesthetics&nbsp;&nbsp;
+          <ion-icon name="trash"></ion-icon>
+        </ion-label>
+        <ion-label range-right>
+          <ion-icon name="flower"></ion-icon>
         </ion-label>
       </ion-range>
     </ion-item>
   </form>
+
+
   <h3 id="suggestions-heading5" style="color:#000000;">
     Other Comments
   </h3>
