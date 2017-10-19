@@ -34,8 +34,15 @@ export class DailyPage {
   * @param {NgZone}        publiczone
   */
   constructor(public navCtrl: NavController, public zone: NgZone, public navParams: NavParams) {
-    this.name = "Today's Menu";
     this.otherAhead = navParams.get('ahead');
+    if(this.otherAhead) {
+      var date = new Date();
+      date.setHours(24 * this.otherAhead, 0, 0, 0); /* Last Midnight */
+      var b = moment(date.toISOString()).format('dddd, MMMM Do');
+      this.name = b;
+    } else {
+      this.name = "Today's Menu";
+    }
     this.loadGapi();
   }
 
@@ -140,7 +147,7 @@ export class DailyPage {
       this.clear(false);
       for (let event of events) {
         var time = moment(event.start.dateTime).format('h:mm a');
-        var date = moment(event.start.dateTime).format('dddd, MMMM DD');
+        var date = moment(event.start.dateTime).format('dddd, MMMM Do');
         if (event.description) {
           var items = event.description.split(',');
           var title = event.summary.toLowerCase();
