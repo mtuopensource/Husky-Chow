@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AboutPage } from '../pages/about/about';
 import { DailyPage } from '../pages/daily/daily';
 import { TomorrowPage } from '../pages/tomorrow/tomorrow';
+import { CalendarPage } from '../pages/calendar/calendar';
 import { SuggestionsPage } from '../pages/suggestions/suggestions';
 import { TabsPage } from '../pages/tabs/tabs';
 

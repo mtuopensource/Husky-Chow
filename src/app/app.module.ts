@@ -9,6 +9,7 @@ import { SuggestionsPage } from '../pages/suggestions/suggestions';
 import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { CalendarPage } from '../pages/calendar/calendar';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     DailyPage,
     TomorrowPage,
     SuggestionsPage,
-    TabsPage
+    TabsPage,
+    CalendarPage
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SuggestionsPage,
     TabsPage,
     TomorrowPage,
+    CalendarPage
   ],
   providers: [
     StatusBar,
