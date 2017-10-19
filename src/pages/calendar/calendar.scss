@@ -2,8 +2,12 @@ page-calendar {
   .center {
   text-align: center;
 }
+.monthName {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
 .calendar-header-col {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #666;
 }
 .calendar-row {
@@ -14,7 +18,7 @@ page-calendar {
     display: flex;
     justify-content: center;
     padding: 0.8rem;
-    font-size: 1.2rem;
+    font-size: 2rem;
     border-left: 1px solid #eee;
     border-top: 1px solid #eee;
     &:last-child {
