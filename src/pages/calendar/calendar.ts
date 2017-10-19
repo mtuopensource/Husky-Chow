@@ -9,9 +9,10 @@ import * as _ from "lodash";
 })
 
 export class CalendarPage {
+  public name: any = "This Month";
   public dateArray: any = [];
   public weekArray: any = [];
-  public weekHead: any = [];
+  public weekHead: any = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   public lastSelect: any = 0;
   public currentYear: any = 0;
   public currentMonth: any = 0;
@@ -23,11 +24,7 @@ export class CalendarPage {
 
   constructor(public navCtrl: NavController) {
 
-    this.dateArray = []; // 本月展示的所有天的数组
-    this.weekArray = []; // 保存日历每行的数组
-    this.lastSelect = 0; // 记录上次点击的位置
-    // weekHead: string[] = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-    this.weekHead = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
     this.currentYear = moment().year();
     this.currentMonth = moment().month();
     this.currentDate = moment().date();
@@ -36,7 +33,7 @@ export class CalendarPage {
     this.today();
   }
   daySelect = (selected): void => {
-    
+
   }
 
   today = (): void => {
