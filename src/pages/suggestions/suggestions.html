@@ -1,54 +1,34 @@
+<!-- Navigation Bar -->
 <ion-header>
   <ion-navbar color="husky">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>
-      Suggestions
-    </ion-title>
+    <ion-title>Suggestions</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding id="page6">
-  <div id="suggestions-markdown3" style="text-align:center;" class="show-list-numbers-and-dots">
-    <p style="color:#000000;">
-      Have an idea to make Husky Chow better? Please let us know! We appreciate your constructive feedback.
-    </p>
-  </div>
+<ion-content padding>
+  <p class="text-center">Have an idea to make Husky Chow better? Please let us know! We appreciate your constructive feedback.</p>
 
-  <h3 id="suggestions-heading3" style="color:#000000;">
-    Contact Information
-  </h3>
-  <form id="suggestions-form2">
-    <ion-item id="suggestions-input4">
-      <ion-label stacked>
-        Name
-      </ion-label>
-      <ion-input id="name" type="text" placeholder="John Doe"></ion-input>
+  <form (ngSubmit)="submitForm()">
+    <h3 class="text-center">Contact Information</h3>
+    <ion-item>
+      <ion-label stacked>Name</ion-label>
+      <ion-input [(ngModel)]="response.name" name="name" type="text" placeholder="John Doe"></ion-input>
     </ion-item>
-    <ion-item id="suggestions-input7">
-      <ion-label stacked>
-        Phone Number
-      </ion-label>
-      <ion-input id = "phone_number" type="tel" placeholder="555-555-5555"></ion-input>
+    <ion-item>
+      <ion-label stacked>Phone Number</ion-label>
+      <ion-input [(ngModel)]="response.phone_number" name="phone_number" type="tel" placeholder="555-555-5555"></ion-input>
     </ion-item>
-    <ion-item id="suggestions-input6">
-      <ion-label stacked>
-        Email Address
-      </ion-label>
-      <ion-input id="email" type="email" placeholder="example@example.org"></ion-input>
+    <ion-item>
+      <ion-label stacked>Email Address</ion-label>
+      <ion-input [(ngModel)]="response.email" name="email" type="email" placeholder="example@example.org"></ion-input>
     </ion-item>
-  </form>
-
-  <h3 id="suggestions-heading4" style="color:#000000;">
-    Ratings
-  </h3>
-  <form id="suggestions-form4">
-    <ion-item id="suggestions-range2">
-      <ion-label class = "sliderLabel" stacked>
-        Ease of Use
-      </ion-label>
-      <ion-range id="user_experience" min="1" max="5" step="1" color="energized" value="3">
+    <h3 class="text-center">Ratings</h3>
+    <ion-item>
+      <ion-label class="sliderLabel" stacked>Ease of Use</ion-label>
+      <ion-range [(ngModel)]="response.usability" name="usability" min="1" max="5" step="1" color="energized" value="3">
         <ion-label range-left>
           <ion-icon name="sad"></ion-icon>
         </ion-label>
@@ -57,11 +37,9 @@
         </ion-label>
       </ion-range>
     </ion-item>
-    <ion-item id="suggestions-range3">
-      <ion-label class = "sliderLabel" stacked>
-        Aesthetics
-      </ion-label>
-      <ion-range id="aesthetics" min="1" max="5" step="1" color="energized" value="3">
+    <ion-item>
+      <ion-label class="sliderLabel" stacked>Aesthetics</ion-label>
+      <ion-range [(ngModel)]="response.aesthetics" name="aesthetics" min="1" max="5" step="1" color="energized" value="3">
         <ion-label range-left>
           <ion-icon name="trash"></ion-icon>
         </ion-label>
@@ -70,35 +48,21 @@
         </ion-label>
       </ion-range>
     </ion-item>
-  </form>
-
-
-  <h3 id="suggestions-heading5" style="color:#000000;">
-    Other Comments
-  </h3>
-  <form id="suggestions-form5" (ngSubmit)="submitForm();">
-    <ion-item id="suggestions-input12">
-      <ion-label stacked>
-        Device and Software
-      </ion-label>
-      <ion-input id="device" type="text" placeholder="Galaxy S8, Android 7.0"></ion-input>
+    <h3 class="text-center">Other Comments</h3>
+    <ion-item>
+      <ion-label stacked>Device and Software</ion-label>
+      <ion-input [(ngModel)]="response.device" name="device" type="text" placeholder="Galaxy S8, Android 7.0"></ion-input>
     </ion-item>
-    <ion-item id="suggestions-input13">
-      <ion-label stacked>
-        Compatibility Feedback
-      </ion-label>
-      <ion-input id="compatibility" type="text" placeholder="This app compatible with my device."></ion-input>
+    <ion-item>
+      <ion-label stacked>Compatibility Feedback</ion-label>
+      <ion-input [(ngModel)]="response.compatibility" name="compatibility" pe="text" placeholder="This app compatible with my device."></ion-input>
     </ion-item>
-    <ion-item id="suggestions-input14">
-      <ion-label stacked>
-        Other Comments and Suggestions
-      </ion-label>
-      <ion-input id="comments" type="text" placeholder="My thoughts and comments."></ion-input>
+    <ion-item>
+      <ion-label stacked>Other Comments and Suggestions</ion-label>
+      <ion-input [(ngModel)]="response.comments" name="comments" type="text" placeholder="My thoughts and comments."></ion-input>
     </ion-item>
-    <div class="spacer" style="height:30px;" id="suggestions-spacer4"></div>
-    <button type="submit" id="suggestions-button1" ion-button color="husky" block>
-      Submit Feedback
-    </button>
-    <div class="spacer" style="height:30px;" id="suggestions-spacer3"></div>
+    <div class="spacer" style="height:30px;"></div>
+    <button type="submit" color="husky" ion-button block>Submit Feedback</button>
+    <div class="spacer" style="height:30px;"></div>
   </form>
 </ion-content>

@@ -1,63 +1,76 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { ToastController } from 'ionic-angular';
 import $ from "jquery";
 
 @Component({
-  selector: 'page-suggestions',
+  selector   : 'page-suggestions',
   templateUrl: 'suggestions.html'
 })
 
 export class SuggestionsPage {
-  public GOOGLE_FORMS_URL : string = 'https://docs.google.com/forms/d/1OczhNdlEUv6X7yPuNPhq7bZh1AF2DEuk8OE1TkBrpRk/formResponse';
+  private readonly formsUrl : string = 'https://docs.google.com/forms/d/1OczhNdlEUv6X7yPuNPhq7bZh1AF2DEuk8OE1TkBrpRk/formResponse';
+  private response = {};
 
-  constructor(public navCtrl: NavController) {
+  /**
+   * SuggestionsPage Constructor
+   * @param  {NavController}   navCtrl   Used to navigate to pages. A stack of pages representing history.
+   * @param  {ToastController} toastCtrl Used to create, display, and dismiss Toasts.
+   */
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController) {
   }
 
+  /**
+   * PresentToast
+   * Displays a subtle notification, informing the user that their response has
+   * been recorded. Dismissed when the user clicks the close button.
+   */
+  presentToast = (): void => {
+    const toast = this.toastCtrl.create({
+      closeButtonText: 'Ok',
+      message: 'Thank you! Your response has been recorded.',
+      position: 'bottom',
+      showCloseButton: true
+    }).present();
+  }
+
+  /**
+   * SubmitForm
+   * Read the data from the form and POST it to the Google API. Clears the form
+   * and thanks the user for their submission.
+   */
   submitForm = (): void => {
-   var name = $('#name').val();
-   var phone_number = $('#phone_number').val();
-   var email = $('#email').val();
-   var user_experience = $('#user_experience').val();
-   var aesthetics = $('#aesthetics').val();
-   var device = $('#device').val();
-   var compatibility = $('#compatibility').val();
-   var comments = $('#comments').val();
-   var request = {
-     'usp': 'pp_url',
-     'entry.1710756200': name, /* Name */
-     'entry.1036644864': phone_number, /* Phone Number */
-     'entry.118019032': email, /* Mail Address */
-     'entry.328842982': Number(user_experience), /* User Experience */
-     'entry.1516275287': Number(aesthetics), /* Aesthetics */
-     'entry.2103220588': device, /* Device Model/Software */
-     'entry.1534649750': compatibility, /* Compatibility */
-     'entry.2041983297': comments /* Other Suggestions */
-   };
+    let request = {
+      'usp': 'pp_url',
+      'entry.1710756200': this.response['name'],
+      'entry.1036644864': this.response['phone_number'],
+      'entry.118019032':  this.response['email'],
+      'entry.328842982':  this.response['usability'],
+      'entry.1516275287': this.response['aesthetics'],
+      'entry.2103220588': this.response['device'],
+      'entry.1534649750': this.response['compatibility'],
+      'entry.2041983297': this.response['comments']
+    };
 
-   $.ajax({
-           url: this.GOOGLE_FORMS_URL,
-           data: request,
-           type: "GET",
-           dataType: "xml",
-           statusCode: {
-               0: function () {
+    /* POST the data to Google Forms API */
+    $.ajax({
+      'url': this.formsUrl,
+      'data': request,
+      'type': 'GET',
+      'dataType': 'xml'
+    });
 
-               },
-               200: function () {
-                 console.log('Form submitted, no errors');
-               }
-           }
-       });
+    /* Clear the form */
+    this.response['name'] = '';
+    this.response['phone_number'] = '';
+    this.response['email'] = '';
+    this.response['usability'] = '';
+    this.response['aesthetics'] = '';
+    this.response['device'] = '';
+    this.response['compatibility'] = '';
+    this.response['comments'] = '';
 
-       $('#name').val('');
-       $('#phone_number').val('');
-       $('#email').val('');
-       $('#user_experience').val('');
-       $('#aesthetics').val('');
-       $('#device').val('');
-       $('#compatibility').val('');
-       $('#comments').val('');
- }
-
+    /* Thank the user */
+    this.presentToast();
+  }
 }
