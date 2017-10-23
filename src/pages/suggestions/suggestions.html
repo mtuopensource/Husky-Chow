@@ -24,19 +24,19 @@
       <ion-label stacked>
         Name
       </ion-label>
-      <ion-input type="text" placeholder="John Doe"></ion-input>
+      <ion-input id="name" type="text" placeholder="John Doe"></ion-input>
     </ion-item>
     <ion-item id="suggestions-input7">
       <ion-label stacked>
         Phone Number
       </ion-label>
-      <ion-input type="tel" placeholder="555-555-5555"></ion-input>
+      <ion-input id = "phone_number" type="tel" placeholder="555-555-5555"></ion-input>
     </ion-item>
     <ion-item id="suggestions-input6">
       <ion-label stacked>
         Email Address
       </ion-label>
-      <ion-input type="email" placeholder="example@example.org"></ion-input>
+      <ion-input id="email" type="email" placeholder="example@example.org"></ion-input>
     </ion-item>
   </form>
 
@@ -48,7 +48,7 @@
       <ion-label class = "sliderLabel" stacked>
         Ease of Use
       </ion-label>
-      <ion-range min="1" max="5" step="1" color="energized" value="3">
+      <ion-range id="user_experience" min="1" max="5" step="1" color="energized" value="3">
         <ion-label range-left>
           <ion-icon name="sad"></ion-icon>
         </ion-label>
@@ -61,7 +61,7 @@
       <ion-label class = "sliderLabel" stacked>
         Aesthetics
       </ion-label>
-      <ion-range min="1" max="5" step="1" color="energized" value="3">
+      <ion-range id="aesthetics" min="1" max="5" step="1" color="energized" value="3">
         <ion-label range-left>
           <ion-icon name="trash"></ion-icon>
         </ion-label>
@@ -76,27 +76,27 @@
   <h3 id="suggestions-heading5" style="color:#000000;">
     Other Comments
   </h3>
-  <form id="suggestions-form5">
+  <form id="suggestions-form5" (ngSubmit)="submitForm();">
     <ion-item id="suggestions-input12">
       <ion-label stacked>
         Device and Software
       </ion-label>
-      <ion-input type="text" placeholder="Galaxy S8, Android 7.0"></ion-input>
+      <ion-input id="device" type="text" placeholder="Galaxy S8, Android 7.0"></ion-input>
     </ion-item>
     <ion-item id="suggestions-input13">
       <ion-label stacked>
         Compatibility Feedback
       </ion-label>
-      <ion-input type="text" placeholder="This app compatible with my device."></ion-input>
+      <ion-input id="compatibility" type="text" placeholder="This app compatible with my device."></ion-input>
     </ion-item>
     <ion-item id="suggestions-input14">
       <ion-label stacked>
         Other Comments and Suggestions
       </ion-label>
-      <ion-input type="text" placeholder="My thoughts and comments."></ion-input>
+      <ion-input id="comments" type="text" placeholder="My thoughts and comments."></ion-input>
     </ion-item>
     <div class="spacer" style="height:30px;" id="suggestions-spacer4"></div>
-    <button id="suggestions-button1" ion-button color="husky" block>
+    <button type="submit" id="suggestions-button1" ion-button color="husky" block>
       Submit Feedback
     </button>
     <div class="spacer" style="height:30px;" id="suggestions-spacer3"></div>
