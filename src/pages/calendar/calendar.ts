@@ -38,6 +38,10 @@ export class CalendarPage {
     this.today();
   }
 
+  /**
+   * daySelect - Displays the dailyPage for the selected date
+   * @param selected day on calendar
+   */
   daySelect = (selected): void => {
     var a = moment();
     var b = moment([selected.year, selected.month, selected.date]);
@@ -50,7 +54,9 @@ export class CalendarPage {
     });
   }
 
-  //Finds today's date and highlights it in the calendar.
+  /**
+   * today - finds today within the dateArray
+   */
   today = (): void => {
     //Set display date to current date.
     this.displayYear = this.currentYear;
@@ -69,7 +75,11 @@ export class CalendarPage {
     this.dateArray[todayIndex].isSelect = true;
   }
 
-  //Creates the actual calendar view of the current month.
+  /**
+   * createMonth - Creates the calendar display of the current month.
+   * @param  {year}   year
+   * @param  {month}  month
+   */
   createMonth = (year, month): void => {
     this.dateArray = [];
     this.weekArray = [];
