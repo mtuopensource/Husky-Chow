@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { ToastController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
+import { Environment } from '../../config/environment';
 import $ from "jquery";
 
 @Component({
@@ -9,7 +9,6 @@ import $ from "jquery";
 })
 
 export class SuggestionsPage {
-  private readonly formsUrl : string = 'https://docs.google.com/forms/d/1OczhNdlEUv6X7yPuNPhq7bZh1AF2DEuk8OE1TkBrpRk/formResponse';
   private response = {};
 
   /**
@@ -54,7 +53,7 @@ export class SuggestionsPage {
 
     /* POST the data to Google Forms API */
     $.ajax({
-      'url': this.formsUrl,
+      'url': Environment.GAPI_FORMS_URL,
       'data': request,
       'type': 'GET',
       'dataType': 'xml'

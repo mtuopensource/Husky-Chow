@@ -1,22 +1,14 @@
 <ion-menu [content]="mainContent">
   <ion-header>
     <ion-toolbar color="husky">
-      <ion-title>
-        Husky Chow
-      </ion-title>
+      <ion-title>Husky Chow</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content id="side-menu21">
-    <ion-list id="huskyChow-list2">
-      <ion-item color="none" menuClose="" on-click="goToTabs()" id="huskyChow-list-item5">
-        The Menu
-      </ion-item>
-      <ion-item color="none" menuClose="" on-click="goToAbout()" id="huskyChow-list-item4">
-        About Husky Chow
-      </ion-item>
-      <ion-item color="none" menuClose="" on-click="goToSuggestions()" id="huskyChow-list-item6">
-        Suggestions
-      </ion-item>
+  <ion-content>
+    <ion-list>
+      <ion-item color="none" on-click="goToTabs()">The Menu</ion-item>
+      <ion-item color="none" on-click="goToAbout()">About Husky Chow</ion-item>
+      <ion-item color="none" on-click="goToSuggestions()">Suggestions</ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
