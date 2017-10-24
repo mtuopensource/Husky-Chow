@@ -9,7 +9,7 @@ import $ from "jquery";
 })
 
 export class SuggestionsPage {
-  private response = {};
+  private response = {}; // Model of form inputs, connected to the front end.
 
   /**
    * SuggestionsPage Constructor
