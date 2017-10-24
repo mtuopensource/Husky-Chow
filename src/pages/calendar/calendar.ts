@@ -30,8 +30,6 @@ export class CalendarPage {
 
 
   constructor(public navCtrl: NavController) {
-
-
     this.currentYear = moment().year();
     this.currentMonth = moment().month();
     this.currentDate = moment().date();
@@ -39,6 +37,7 @@ export class CalendarPage {
 
     this.today();
   }
+
   daySelect = (selected): void => {
     var a = moment();
     var b = moment([selected.year, selected.month, selected.date]);
@@ -51,12 +50,15 @@ export class CalendarPage {
     });
   }
 
+  //Finds today's date and highlights it in the calendar.
   today = (): void => {
+    //Set display date to current date.
     this.displayYear = this.currentYear;
     this.displayMonth = this.currentMonth;
     this.displayMonth = moment().month(this.displayMonth).format('MMMM');
     this.createMonth(this.currentYear, this.currentMonth);
 
+    // Finds today's date in the dateArray.
     var todayIndex = _.findIndex(this.dateArray, {
         year: this.currentYear,
         month: this.currentMonth,
@@ -65,9 +67,9 @@ export class CalendarPage {
     });
     this.lastSelect = todayIndex;
     this.dateArray[todayIndex].isSelect = true;
-
   }
 
+  //Creates the actual calendar view of the current month.
   createMonth = (year, month): void => {
     this.dateArray = [];
     this.weekArray = [];
@@ -75,21 +77,26 @@ export class CalendarPage {
     var preMonthDays;
     var monthDays;
     var weekDays = [];
+
+    //set firstday to the first of the current month
     firstDay = moment({ year: year, month: month, date: 1 }).day();
-    // 上个月天数
-    if (month === 0) {
+
+    // The number of days last month
+    if (month === 0) {  //Case for January
         preMonthDays = moment({ year: year - 1, month: 11 }).daysInMonth();
     }
-    else {
+    else {    //Case for every other month.
         preMonthDays = moment({ year: year, month: month - 1 }).daysInMonth();
     }
-
+    //Get the amount of days in the current month
     monthDays = moment({ year: year, month: month }).daysInMonth();
 
+    //If the month doesn't start on a sunday, fill in the days before with last month.
     if (firstDay !== 7) {
         var lastMonthStart = preMonthDays - firstDay + 1;
+        //Add the days into the dateArray
         for (var i = 0; i < firstDay; i++) {
-            if (month === 0) {
+            if (month === 0) {  //case for January
                 this.dateArray.push({
                     year: year,
                     month: 11,
@@ -99,7 +106,7 @@ export class CalendarPage {
                     isSelect: false,
                 });
             }
-            else {
+            else {  //Case for all other months
                 this.dateArray.push({
                     year: year,
                     month: month - 1,
@@ -112,6 +119,7 @@ export class CalendarPage {
         }
     }
 
+    //Add dates from the current month into the dateArray
     for (var i = 0; i < monthDays; i++) {
         this.dateArray.push({
             year: year,
@@ -122,6 +130,8 @@ export class CalendarPage {
             isSelect: false,
         });
     }
+
+    //Find the current day in the dateArray and mark it as today.
     if (this.currentYear === year && this.currentMonth === month) {
         var todayIndex = _.findIndex(this.dateArray, {
             year: this.currentYear,
@@ -132,9 +142,11 @@ export class CalendarPage {
         this.dateArray[todayIndex].isToday = true;
     }
 
+    // Adds days of the next month to fill the end of the calendar
     if (this.dateArray.length % 7 !== 0) {
         var nextMonthAdd = 7 - this.dateArray.length % 7;
         for (var i = 0; i < nextMonthAdd; i++) {
+            //Case for when month is December
             if (month === 11) {
                 this.dateArray.push({
                     year: year,
@@ -145,6 +157,7 @@ export class CalendarPage {
                     isSelect: false,
                 });
             }
+            // Case for every other month
             else {
                 this.dateArray.push({
                     year: year,
@@ -157,8 +170,9 @@ export class CalendarPage {
             }
         }
     }
-    // 至此所有日期数据都被添加入 dateArray 数组中
-    // 将日期数据按照每 7 天插入新的数组中
+
+    // At this point all date data is added to the dateArray array
+    // Insert the date data into the new array every 7 days
     for (var i = 0; i < this.dateArray.length / 7; i++) {
         for (var j = 0; j < 7; j++) {
             weekDays.push(this.dateArray[i * 7 + j]);
