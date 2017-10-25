@@ -2,31 +2,32 @@ import { Component, NgZone } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Environment } from '../../config/environment';
 import { NavParams } from 'ionic-angular';
-
-
 import * as moment from "moment";
-declare var gapi: any;
+
+declare var gapi: any; // TypeScript doesn't know this exists.
 
 @Component({
   selector:    'page-daily',
   templateUrl: 'daily.html'
 })
 
+/**
+ * DailyPage
+ * Displays planned meals for a particular date. By default, this is the current
+ * date. The user can choose another date using the Calendar view.
+ */
 export class DailyPage {
-  readonly types: any = {
+  private userAhead: number;
+  private refresher: any;
+  private days: any = [];
+  protected pageTitle: string; // The page title, displayed in the navigation bar.
+  protected readonly mealTypes: any = {
     'breakfast': 'Breakfast',
     'brunch'   : 'Brunch',
     'lunch'    : 'Lunch',
     'dinner'   : 'Dinner',
     'supper'   : 'Dinner'
   };
-
-  public refresher: any;
-  public days: any = [];
-  public keys: any = [];
-  public none: any;
-  public name: any;
-  public otherAhead: number;
 
   /**
    * DailyPage Constructor
@@ -36,15 +37,8 @@ export class DailyPage {
    * @param  {NavParams}     navParams An object that exists on a page and can contain data for that particular view.
    */
   constructor(public navCtrl: NavController, public zone: NgZone, public navParams: NavParams) {
-    this.otherAhead = navParams.get('ahead');
-    if(this.otherAhead) {
-      var date = new Date();
-      date.setHours(24 * this.otherAhead, 0, 0, 0); /* Last Midnight */
-      var b = moment(date.toISOString()).format('dddd, MMMM Do');
-      this.name = b;
-    } else {
-      this.name = "Today's Menu";
-    }
+    this.userAhead = navParams.get('ahead');
+    this.pageTitle = this.getPageTitle();
     this.loadGapi();
   }
 
@@ -57,76 +51,88 @@ export class DailyPage {
   }
 
   /**
-  * Clear
-  * Clears any data that was previously fetched by the Google Api.
-  * @param {boolean} none is true when no data will be loaded.
-  */
-  clear = (none: boolean): void => {
-    this.none = none;
-    this.days = [];
-    this.keys = [];
+   * GetPageTitle
+   * Returns the navigation bar title, depending on if the user has selected a
+   * custom date or not.
+   * @return {string} title
+   */
+  getPageTitle = (): string => {
+    var date = new Date();
+    if(this.userAhead) {
+      date.setHours(this.userAhead * 24, 0, 0, 0);
+      return moment(date.toISOString()).format('dddd, MMMM Do'); //TODO Inefficient way to convert a JS Date to Moment.
+    } else {
+      return 'Today\'s Menu';
+    }
   }
 
   /**
-  * LoadGapi
-  * Asynchronously loads the Google API client library. On success, we then
-  * attempt to autenticate using the key and discovery documents set in
-  * the Environment.
+  * Clear
+  * Clears any data that was previously fetched by the Google Api.
   */
+  clear = (): void => {
+    this.days = [];
+  }
+
+  /**
+   * LoadGapi
+   * Asynchronously loads the Google API client library. On success, we then
+   * attempt to autenticate using the key and discovery documents set in
+   * the Environment.
+   */
   loadGapi = (): void => {
     if (gapi) {
       gapi.load('client:auth2', this.authGapi);
     } else {
       console.error('Gapi not loaded');
       this.zone.run(() => {
-        this.clear(true);
+        this.clear();
       });
     }
   }
 
   /**
-  * AuthGapi
-  * Asynchronously authenticates with the Google API using the key and discovery
-  * documents set in the Environment. On success, we then attempt to load the
-  * Google Calendar API.
-  */
+   * AuthGapi
+   * Asynchronously authenticates with the Google API using the key and discovery
+   * documents set in the Environment. On success, we then attempt to load the
+   * Google Calendar API.
+   */
   authGapi = (): void => {
     if (gapi) {
       var options = { 'apiKey': Environment.GAPI_API_KEY, 'discoveryDocs': Environment.GAPI_DISCOVERY_DOCS };
-      gapi.client.init(options).then(this.loadGapiCalendarApi);
+      gapi.client.init(options).then(this.loadCalendarApi);
     } else {
       console.error('Gapi client library not loaded');
       this.zone.run(() => {
-        this.clear(true);
+        this.clear();
       });
     }
   }
 
   /**
-  * LoadGapiCalendarApi
-  * Asynchronously loads the Google Calendar library. On success, we then request
-  * the events list from the calendar id set in the Environment.
-  */
-  loadGapiCalendarApi = (): void => {
+   * LoadCalendarApi
+   * Asynchronously loads the Google Calendar library. On success, we then request
+   * the events list from the calendar id set in the Environment.
+   */
+  loadCalendarApi = (): void => {
     gapi.client.load('calendar', 'v3').then(this.requestEventsList);
   }
 
   /**
-  * RequestEventsList
-  * Asynchronously requests the Events List from the Google Calendar Library. On
-  * success, we then parse the events list.
-  */
+   * RequestEventsList
+   * Asynchronously requests the Events List from the Google Calendar Library. On
+   * success, we then parse the events list.
+   */
   requestEventsList = (): void => {
     var minTime = new Date();
     var maxTime = new Date();
-    if(this.otherAhead) {
-      minTime.setHours(24 * this.otherAhead, 0, 0, 0); /* Last Midnight */
-      maxTime.setHours(24 * this.otherAhead + 24, 0, 0, 0); /* Add 24 hours for each day */
+    if(this.userAhead) {
+      minTime.setHours(24 * this.userAhead, 0, 0, 0); /* Previous Midnight */
+      maxTime.setHours(24 * this.userAhead + 24, 0, 0, 0); /* Next Midnight */
     } else {
-      minTime.setHours(24 * this.ahead(), 0, 0, 0); /* Last Midnight */
-      maxTime.setHours(24 * this.ahead() + 24, 0, 0, 0); /* Add 24 hours for each day */
+      minTime.setHours(24 * this.ahead(), 0, 0, 0); /* Previous Midnight */
+      maxTime.setHours(24 * this.ahead() + 24, 0, 0, 0); /* Next Midnight */
     }
-
     var parameters = {
       'calendarId': Environment.GAPI_CALENDAR_ID,
       'timeMin': minTime.toISOString(),
@@ -138,60 +144,52 @@ export class DailyPage {
   }
 
   /**
-  * ParseEventsList
-  * Adds each meal to the list, using the title, date and time, and description
-  * given by the event list request.
-  * @param {String} response from the events list request.
-  */
+   * ParseEventsList
+   * Adds each meal to the list, using the title, date and time, and description
+   * given by the event list request.
+   * @param {Array} response from the events list request.
+   */
   parseEventsList = (response): void => {
     var events = response.result.items;
-    if (events.length > 0) {
-      this.clear(false);
-      for (let event of events) {
-        var time = moment(event.start.dateTime).format('h:mm a');
-        var date = moment(event.start.dateTime).format('dddd, MMMM Do');
-        if (event.description) {
-          var items = event.description.split(',');
-          var title = event.summary.toLowerCase();
-
-          if(title in this.types) {
-            title = this.types[title];
-          } else {
-            console.log(event.summary + ' has unknown meal type, skipping.');
-            continue;
+    this.zone.run(() => {
+      this.clear(); // Prevent duplicate data from being displayed.
+    });
+    for (let event of events) {
+      var time = moment(event.start.dateTime).format('h:mm a');
+      var date = moment(event.start.dateTime).format('dddd, MMMM Do');
+      if (event.description) {
+        var keyvp = this.days.find(day => day.date == date);
+        var items = event.description.split(','); // Comma seperated list of foodstuffs.
+        var title = event.summary.toLowerCase();
+        if(title in this.mealTypes) {
+          title = this.mealTypes[title];
+          if(!keyvp) {
+            keyvp = { 'date': date, 'meals': [] };
+            this.days.push(keyvp);
           }
-
-          var key = this.days.find(x => x.date == date);
-          if(!key) {
-            key = { 'date': date, 'meals': [] }
-            this.days.push(key);
-          }
-          var structure = { 'title': title, 'items': items, 'time': time };
+          var meal = { 'title': title, 'items': items, 'time': time };
           this.zone.run(() => {
-            key.meals.push(structure);
-            this.keys = Object.keys(this.days);
+            keyvp.meals.push(meal);
           });
           if (this.refresher) {
             this.refresher.complete();
           }
         } else {
-          console.log(event.summary + ' has no description, skipping.');
-          continue;
+          console.log(event.summary + ' has unknown meal type, skipping.');
+          continue; // TODO Report this to the devs to correct.
         }
+      } else {
+        console.log(event.summary + ' has no description, skipping.');
+        continue;
       }
-    } else {
-      console.log('No response, clearing old items');
-      this.zone.run(() => {
-        this.clear(true);
-      });
     }
   }
 
   /**
-  * DoRefresh
-  * Called when the user has requested a refresh.
-  * @param refresher provides pull-to-refresh functionality on a content component.
-  */
+   * DoRefresh
+   * Called when the user has requested a refresh.
+   * @param {Refresher} refresher provides pull-to-refresh functionality on a content component.
+   */
   doRefresh = (refresher): void => {
     this.refresher = refresher;
     this.loadGapi();

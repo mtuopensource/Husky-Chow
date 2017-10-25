@@ -3,36 +3,38 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{ name }}</ion-title>
+    <ion-title>{{ pageTitle }}</ion-title>
   </ion-navbar>
 </ion-header>
 
-<!-- Page Content -->
-<ion-content padding id="page5">
+<ion-content padding>
+  <!-- When the user pulls down on this element, the data is refreshed. -->
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div *ngIf="none" class="card">
-    <div class="item item-text-wrap">
-      No meals found
-    </div>
+  <!-- Displayed when no meals are found. -->
+  <div *ngIf="days.length == 0" class="card">
+    <ion-card padding>
+      <ion-card-header>
+        <h1 class="mealName">No meals found</h1>
+      </ion-card-header>
+    </ion-card>
   </div>
 
-  <div class="day" *ngFor="let day of days; let isFirst = first">
+  <!-- Compatible with displaying several days, although unused. -->
+  <div class="day" *ngFor="let day of days; let isFirst = first;">
     <ion-card *ngFor="let meal of day.meals">
       <ion-card-header>
-        <h1 class="mealName">{{meal.title}}</h1>
-        <h2 class="mealTime">{{meal.time}}</h2>
+        <h1 class="meal">{{ meal.title }}</h1>
+        <h2 class="time">{{ meal.time }}</h2>
       </ion-card-header>
-      <hr class="mealDivider" />
+      <hr class="divider" />
       <ion-card-content>
-        <ul class="foodstuff">
-          <li *ngFor="let food of meal.items">{{ food }}</li>
+        <ul class="items">
+          <li *ngFor="let item of meal.items">{{ item }}</li>
         </ul>
       </ion-card-content>
     </ion-card>
   </div>
-
-
 </ion-content>

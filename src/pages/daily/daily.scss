@@ -1,37 +1,28 @@
 page-daily {
-  .daySeparator {
-    font-size: 2rem;
-    text-align: center;
-  }
-  .daySeparator.first {
-    margin-top: 0;
-  }
-  .foodstuff {
-    margin: 0;
-    padding: 0 16px;
+  .meal {
+    font-size: 3.5rem;
   }
 
-  .foodstuff li {
-    font-size: 1.75rem;
+  .time {
+    font-size: 2.25rem;
+  }
+
+  .divider {
+    margin: 0; padding: 0;
+  }
+
+  .items {
+    margin: 0; padding: 0 16px;
+    li {
+      font-size: 1.75rem;
+    }
   }
 
   .card-header-md, .card-content-ios {
     padding: 16px 16px 8px 16px!important;
   }
+
   .card-content-md, .card-content-ios {
     padding: 8px 16px !important;
-  }
-
-  .mealDivider {
-    margin: 0;
-    padding: 0;
-  }
-
-  .mealName {
-    font-size: 3.5rem  ;
-  }
-
-  .mealTime {
-    font-size: 2.25rem;
   }
 }

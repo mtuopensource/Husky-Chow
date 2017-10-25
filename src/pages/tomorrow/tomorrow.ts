@@ -23,7 +23,7 @@ export class TomorrowPage extends DailyPage {
    */
   constructor(public navCtrl: NavController, public zone: NgZone, public navParams: NavParams) {
     super(navCtrl, zone, navParams);
-    this.name = "Tomorrow's Menu";
+    this.pageTitle = "Tomorrow's Menu";
   }
 
   /**
