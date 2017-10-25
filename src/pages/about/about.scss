@@ -4,9 +4,15 @@ page-about {
     font-size: 2rem;
   }
   //Made Octocat image a bit smaller than default
-  img {
-    width: 50vw;
+  .octocat {
+    display: block;
     height: auto;
+    margin: 0 auto 0 auto;
+    width: 50vw;
+  }
+
+  .spacer {
+    height: 20px;
   }
 
 
