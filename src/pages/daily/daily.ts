@@ -30,6 +30,7 @@ export class DailyPage {
 
   /**
    * DailyPage Constructor
+   * NOTE the properties on the constructor must be public, since we're overriding.
    * @param  {NavController} navCtrl   Used to navigate to pages. A stack of pages representing history.
    * @param  {NgZone}        zone      Injectable service for executing code inside or outside of the Angular zone.
    * @param  {NavParams}     navParams An object that exists on a page and can contain data for that particular view.
