@@ -39,7 +39,7 @@ export class HuskyChow {
   /**
    * GoToAbout
    * Clears the navigation stack and pushes a new instance of AboutPage.
-   * @param  {[type]} params an object that exists on a page and can contain data for that particular view.
+   * @param  {NavParams} params an object that exists on a page and can contain data for that particular view.
    */
   goToAbout = (params): void => {
     if (!params) {
@@ -51,7 +51,7 @@ export class HuskyChow {
   /**
    * GoToSuggestions
    * Clears the navigation stack and pushes a new instance of SuggestionsPage.
-   * @param  {[type]} params an object that exists on a page and can contain data for that particular view.
+   * @param  {NavParams} params an object that exists on a page and can contain data for that particular view.
    */
   goToSuggestions = (params): void => {
     if (!params) {
@@ -63,7 +63,7 @@ export class HuskyChow {
   /**
    * GoToTabs
    * Clears the navigation stack and pushes a new instance of TabsPage.
-   * @param  {[type]} params an object that exists on a page and can contain data for that particular view.
+   * @param  {NavParams} params an object that exists on a page and can contain data for that particular view.
    */
   goToTabs = (params): void => {
     if (!params) {

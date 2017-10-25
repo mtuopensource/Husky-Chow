@@ -4,7 +4,7 @@ import { Environment } from '../../config/environment';
 import $ from "jquery";
 
 @Component({
-  selector   : 'page-suggestions',
+  selector:    'page-suggestions',
   templateUrl: 'suggestions.html'
 })
 

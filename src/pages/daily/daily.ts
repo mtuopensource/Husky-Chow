@@ -8,7 +8,7 @@ import * as moment from "moment";
 declare var gapi: any;
 
 @Component({
-  selector: 'page-daily',
+  selector:    'page-daily',
   templateUrl: 'daily.html'
 })
 
@@ -29,10 +29,11 @@ export class DailyPage {
   public otherAhead: number;
 
   /**
-  * DailyPage
-  * @param {NavController} publicnavCtrl
-  * @param {NgZone}        publiczone
-  */
+   * DailyPage Constructor
+   * @param  {NavController} navCtrl   Used to navigate to pages. A stack of pages representing history.
+   * @param  {NgZone}        zone      Injectable service for executing code inside or outside of the Angular zone.
+   * @param  {NavParams}     navParams An object that exists on a page and can contain data for that particular view.
+   */
   constructor(public navCtrl: NavController, public zone: NgZone, public navParams: NavParams) {
     this.otherAhead = navParams.get('ahead');
     if(this.otherAhead) {
@@ -47,9 +48,9 @@ export class DailyPage {
   }
 
   /**
-  * Ahead
-  * @return the number of days to look ahead.
-  */
+   * Ahead
+   * @return {Number} representing the number of days to look ahead.
+   */
   ahead = (): number => {
     return 0;
   }
