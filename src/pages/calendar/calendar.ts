@@ -1,20 +1,21 @@
-/**
-  * This Calendar code was originally created by laker007.
-  * It can be found at https://github.com/laker007/ionic3-calendar
-  */
-
-
 import { Component, EventEmitter } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { DailyPage } from '../daily/daily';
 import * as moment from 'moment';
 import * as _ from "lodash";
-import { DailyPage } from '../daily/daily';
 
 @Component({
-  selector: 'page-calendar',
+  selector:    'page-calendar',
   templateUrl: 'calendar.html'
 })
 
+/**
+ * CalendarPage
+ * Displays a month calendar, so the user can pick a specific date to view.
+ * This code was originally authored by Laker007.
+ * The original source code can be found at https://github.com/laker007/ionic3-calendar
+ * The code has been modified to display the month and year in English.
+ */
 export class CalendarPage {
   public name: any = "This Month";
   public dateArray: any = [];
