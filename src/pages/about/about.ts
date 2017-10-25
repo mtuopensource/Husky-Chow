@@ -8,6 +8,7 @@ import { NavController } from 'ionic-angular';
 
 /**
  * AboutPage
+ * Provides useful information about the app.
  */
 export class AboutPage {
 

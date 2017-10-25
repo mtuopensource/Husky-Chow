@@ -8,6 +8,11 @@ import $ from 'jquery';
   templateUrl: 'suggestions.html'
 })
 
+/**
+ * SuggestionsPage
+ * Allows the user to submit feedback for the app. On the back end, this is
+ * facilitated using a Google Form.
+ */
 export class SuggestionsPage {
   private response = {}; // Bound to the front-end inputs.
 
