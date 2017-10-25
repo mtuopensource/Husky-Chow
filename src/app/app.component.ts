@@ -12,8 +12,7 @@ import { SuggestionsPage } from '../pages/suggestions/suggestions';
 
 /**
  * HuskyChow App
- * The entry point for the app. When the platform is ready, sets the default
- * style of the status bar and hides the splash screen.
+ * A new instance of this class is created when the app is launched.
  */
 export class HuskyChow {
   @ViewChild(Nav) navCtrl: Nav;
@@ -21,6 +20,7 @@ export class HuskyChow {
 
   /**
    * HuskyChow Constructor
+   * When the platform is ready, sets the default style of the status bar and hides the splash screen.
    * @param  {Platform}     platform     Used to get information about your current device.
    * @param  {StatusBar}    statusBar    Manage the appearance of the native status bar.
    * @param  {SplashScreen} splashScreen Displays and hides a splash screen during application launch.
@@ -38,6 +38,7 @@ export class HuskyChow {
 
   /**
    * GoToAbout
+   * Clears the navigation stack and pushes a new instance of AboutPage.
    * @param  {[type]} params an object that exists on a page and can contain data for that particular view.
    */
   goToAbout = (params): void => {
@@ -49,6 +50,7 @@ export class HuskyChow {
 
   /**
    * GoToSuggestions
+   * Clears the navigation stack and pushes a new instance of SuggestionsPage.
    * @param  {[type]} params an object that exists on a page and can contain data for that particular view.
    */
   goToSuggestions = (params): void => {
@@ -60,6 +62,7 @@ export class HuskyChow {
 
   /**
    * GoToTabs
+   * Clears the navigation stack and pushes a new instance of TabsPage.
    * @param  {[type]} params an object that exists on a page and can contain data for that particular view.
    */
   goToTabs = (params): void => {
