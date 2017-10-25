@@ -24,7 +24,7 @@ A simple app to shows today's menu in the Michigan Tech dining halls. Created in
 
 ## Packaging for Release (Android)
 1.  `ionic cordova build --release android`
-2.  `jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore release.keystore android-release-unsigned.apk alias`
+2.  `jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my.keystore android-release-unsigned.apk alias`
 3.  `zipalign -v 4 android-release-unsigned.apk android-release.apk`
 
 ## Copyright and License
