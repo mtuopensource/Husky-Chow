@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { Environment } from '../../config/environment';
-import $ from "jquery";
+import $ from 'jquery';
 
 @Component({
   selector:    'page-suggestions',
@@ -9,14 +9,14 @@ import $ from "jquery";
 })
 
 export class SuggestionsPage {
-  private response = {}; // Model of form inputs, connected to the front end.
+  private response = {}; // Bound to the front-end inputs.
 
   /**
    * SuggestionsPage Constructor
    * @param  {NavController}   navCtrl   Used to navigate to pages. A stack of pages representing history.
    * @param  {ToastController} toastCtrl Used to create, display, and dismiss Toasts.
    */
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController) {
+  constructor(private navCtrl: NavController, private toastCtrl: ToastController) {
   }
 
   /**
@@ -25,7 +25,7 @@ export class SuggestionsPage {
    * been recorded. Dismissed when the user clicks the close button.
    */
   presentToast = (): void => {
-    const toast = this.toastCtrl.create({
+    let toast = this.toastCtrl.create({
       closeButtonText: 'Ok',
       message: 'Thank you! Your response has been recorded.',
       position: 'bottom',
