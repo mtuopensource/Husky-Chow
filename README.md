@@ -1,6 +1,8 @@
 # Husky Chow
 A simple app to shows today's menu in the Michigan Tech dining halls. Created in HTML, JavaScript, and CSS using Ionic and Adobe PhoneGap.
 
+![Screenshot](resources/icon.png?raw=true "Screenshot")
+
 ## Table of Contents
  - [Documentation](#documentation)
  - [Installation](#installation)
