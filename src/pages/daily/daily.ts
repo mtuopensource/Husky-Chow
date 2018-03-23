@@ -159,7 +159,8 @@ export class DailyPage {
       var date = moment(event.start.dateTime).format('dddd, MMMM Do');
       if (event.description) {
         var keyvp = this.days.find(day => day.date == date);
-        var items = event.description.split(','); // Comma seperated list of foodstuffs.
+        var description = event.description.replace(/<[^>]*>/g,'');
+        var items = description.split(','); // Comma seperated list of foodstuffs.
         var title = event.summary.toLowerCase();
         if(title in this.mealTypes) {
           title = this.mealTypes[title];
