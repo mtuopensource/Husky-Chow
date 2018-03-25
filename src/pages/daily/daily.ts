@@ -160,6 +160,9 @@ export class DailyPage {
       if (event.description) {
         var keyvp = this.days.find(day => day.date == date);
         var description = event.description.replace(/<[^>]*>/g,'');
+        description = description.replace(/Description:/g, '');
+        description = description.replace(/&amp;/g, '&');
+        description = description.replace(/&nbsp;/g, '');
         var items = description.split(','); // Comma seperated list of foodstuffs.
         var title = event.summary.toLowerCase();
         if(title in this.mealTypes) {
