@@ -27,6 +27,13 @@ A simple app to shows today's menu in the Michigan Tech dining halls. Created in
 * iOS - Run `ionic cordova run ios --prod`
 
 ## Packaging for Release (Android)
+Building the app for Android requires the following:
+- [Gradle 4](https://gradle.org/releases/)
+- [Android Platform Tools](https://developer.android.com/studio/releases/platform-tools.html)
+- [Android Build Tools](https://developer.android.com/studio/releases/build-tools.html) 27.0.3
+- [Android Platform](https://developer.android.com/sdk/RELEASENOTES.html) 26
+
+
 1.  `ionic cordova build --release android`
 2.  `jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my.keystore android-release-unsigned.apk alias`
 3.  `zipalign -v 4 android-release-unsigned.apk android-release.apk`
